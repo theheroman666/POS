@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 30px;
+}
+
+.botones{
+  padding: 0;
+  margin: 0;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.platillos{
+  width: 250px;
+  height: 200px;
+  border-radius: 20px;
+  image-rendering: pixelated;
+  object-fit: cover;
+  opacity: 0.6;
+}
+
+.contenedores{
+  padding-bottom: 30px;
+}
+
+.numero{
+  padding-left: 10px;
+}
+
+.boton-borrar{
+  border-radius: 10px;
+  width: 50px;
+  transition: background-color 0.3s ease-in;
+}
+
+.boton-borrar:hover{
+  background-color: rgb(255, 0, 0);
+}
