@@ -4,7 +4,7 @@ require_once 'models/usuario.php';
 class usuarioController{
 	
 	public function index(){
-		echo "Controlador Usuarios, Acción index";
+		require_once('views/usuario/login.php');
 	}
 	
 	public function registro(){
