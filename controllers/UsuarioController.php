@@ -8,7 +8,7 @@ class usuarioController{
 	}
 	
 	public function registro(){
-		require_once 'views/usuario/registro.php';
+		require_once('views/usuario/registro.php');
 	}
 	
 	public function save(){
