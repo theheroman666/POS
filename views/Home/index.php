@@ -27,8 +27,6 @@
 	</nav>
     <div class="container-fluid text-center">
         <h1 class="display-5">Productos a cobrar</h1>
-        
-        <a class="btn btn-primary" href="<?=base_url.'Inventario/index'?>">Inventario</a>
         <hr />
         <?php if (isset($_SESSION['producto']) == 'complete') { ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -53,9 +51,6 @@
                     while ($items = $producto->fetch_object()) { ?>
                         <div class="col contenedores">
                             <?php if ($items->Stock != 0) { ?>
-
-                                <!--                                 <a id="comida" href="<?= base_url . 'carrito/add&id=' . $items->Id ?>" target="_self"> -->
-
                                 <a href="<?= base_url . 'carrito/add&id=' . $items->Id ?>">
                                     <button id="gorditas" class="botones">
                                         <img class="platillos" src="<?=base_url.'uploads/images/'.$items->Imagen?>">
@@ -64,7 +59,7 @@
                             <?php } else { ?>
                                 <div id="gorditas" class="botones">
                                     <img class="platillos" src="<?=base_url.'uploads/images/'.$items->Imagen?>">
-                                    NO Disponible
+                                    No Disponible
                                 </div>
                             <?php } ?>
                         </div>
