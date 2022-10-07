@@ -8,7 +8,7 @@ class productoController{
 		$productos = $producto->getRandom(6);
 	
 		// renderizar vista
-		require_once 'views/producto/destacados.php';
+		require_once 'views/Home/index.php';
 	}
 	
 	public function ver(){

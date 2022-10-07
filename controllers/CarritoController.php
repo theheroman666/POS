@@ -11,7 +11,7 @@ class carritoController{
 		}
 		header('Location:'.base_url);
 		require_once 'views/carrito/index.php';
-		
+
 	}
 	
 	public function indexMenu(){
@@ -20,7 +20,7 @@ class carritoController{
 		}else{
 			$carrito = array();
 		}
-		require_once 'Views/Carrito/indexInventario.php';
+		require_once 'views/carrito/index.php';
 	}
 
 	public function add(){
