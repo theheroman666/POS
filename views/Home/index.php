@@ -43,9 +43,6 @@
                     while ($items = $producto->fetch_object()) { ?>
                         <div class="col contenedores">
                             <?php if ($items->Stock != 0) { ?>
-
-                                <!--                                 <a id="comida" href="<?= base_url . 'carrito/add&id=' . $items->Id ?>" target="_self"> -->
-
                                 <a href="<?= base_url . 'carrito/add&id=' . $items->Id ?>">
                                     <button id="gorditas" class="botones">
                                         <img class="platillos" src="<?= base_url . 'uploads/images/' . $items->Imagen ?>">
