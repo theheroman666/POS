@@ -9,7 +9,9 @@ class carritoController{
 		}else{
 			$carrito = array();
 		}
+		header('Location:'.base_url);
 		require_once 'views/carrito/index.php';
+		
 	}
 
 	public function indexMenu(){
@@ -21,6 +23,15 @@ class carritoController{
 		require_once 'views/carrito/index.php';
 	}
 	
+	public function indexMenu(){
+		if(isset($_SESSION['carrito']) && count($_SESSION['carrito']) >= 1){
+			$carrito = $_SESSION['carrito'];
+		}else{
+			$carrito = array();
+		}
+		require_once 'Views/Carrito/indexInventario.php';
+	}
+
 	public function add(){
 		if(isset($_GET['id'])){
 			$producto_id = $_GET['id'];
