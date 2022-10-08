@@ -67,13 +67,17 @@ class Pedido
 	}
 	public function getAll()
 	{
-		$productos = $this->db->query("SELECT * FROM pedidos ORDER BY id DESC");
+		$productos = $this->db->query("SELECT usuarios.Nombre, pedidos.Id,pedidos.Total, 
+		pedidos.DineroRecibido, pedidos.Fecha, 
+		date_format(Fecha, \"%d-%m-%Y %H:%i:%s\") as Fecha 
+		FROM pedidos 
+		INNER JOIN usuarios on pedidos.UsuarioId = usuarios.Id");
 		return $productos;
 	}
 
 	public function getOne()
 	{
-		$producto = $this->db->query("SELECT * FROM pedidos WHERE id = {$this->getId()}");
+		$producto = $this->db->query("SELECT * FROM pedidos WHERE Id = {$this->getId()}");
 		return $producto->fetch_object();
 	}
 
@@ -90,7 +94,7 @@ class Pedido
 	public function getAllByUser()
 	{
 		$sql = "SELECT p.* FROM pedidos p "
-			. "WHERE p.usuario_id = {$this->getUsuarioId()} ORDER BY id DESC";
+			. "WHERE p.UsuarioId = {$this->getUsuarioId()} ORDER BY id DESC";
 
 		$pedido = $this->db->query($sql);
 
@@ -102,13 +106,13 @@ class Pedido
 	{
 		//		$sql = "SELECT * FROM productos WHERE id IN "
 		//				. "(SELECT producto_id FROM lineas_pedidos WHERE pedido_id={$id})";
-
-		$sql = "SELECT pr.*, lp.unidades FROM productos pr "
-			. "INNER JOIN lineas_pedidos lp ON pr.id = lp.producto_id "
-			. "WHERE lp.pedido_id={$id}";
+		
+		$sql = "SELECT productos.Id, productos.Nombre,productos.Precio, 
+		orden.Unidades, pedidos.Total, pedidos.DineroRecibido, orden.PedidoId as 'IdO' FROM orden 
+		INNER JOIN pedidos on orden.PedidoId = pedidos.Id 
+		INNER JOIN productos on orden.ProductoId = productos.Id where orden.PedidoId = {$id};";
 
 		$productos = $this->db->query($sql);
-
 		return $productos;
 	}
 
@@ -135,7 +139,9 @@ class Pedido
 
 			$insert = "INSERT INTO orden VALUES(NULL, {$pedido_id}, {$producto->Id}, {$elemento['unidades']}, NULL)";
 			$save = $this->db->query($insert);
+			$this->db->query("UPDATE productos SET productos.Stock = productos.Stock - {$elemento['unidades']} where productos.Id = '{$producto->Id}';");
 		}
+		Utils::deleteSession('carrito');
 
 		$result = false;
 		if ($save) {
@@ -144,16 +150,14 @@ class Pedido
 		return $result;
 	}
 
-	// public function edit(){
-	// 	$sql = "UPDATE pedidos SET estado='{$this->getEstado()}' ";
-	// 	$sql .= " WHERE id={$this->getId()};";
-
-	// 	$save = $this->db->query($sql);
-
-	// 	$result = false;
-	// 	if($save){
-	// 		$result = true;
-	// 	}
-	// 	return $result;
-	// }
+	public function delete(){
+		$sql = "DELETE FROM pedidos WHERE Id={$this->Id}";
+		$delete = $this->db->query($sql);
+		
+		$result = false;
+		if($delete){
+			$result = true;
+		}
+		return $result;
+	}
 }

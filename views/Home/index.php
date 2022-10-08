@@ -34,7 +34,12 @@
             </div>
 
         <?php unset($_SESSION['pedido']);
-        } ?>
+        } elseif (isset($_SESSION['pedido']) == 'failed') { ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>No se pudo realizar la Compra</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <?php } ?>
 
         <div class="row">
             <div class="col-md-8 col-sm-12">

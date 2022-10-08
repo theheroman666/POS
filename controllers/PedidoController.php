@@ -3,11 +3,22 @@ require_once 'models/pedido.php';
 
 class pedidoController
 {
+	public function index()
+	{
+		Utils::isIdentity();
+		$usuario_id = $_SESSION['identity']->Id;
+		$pedido = new Pedido();
+
+		// Sacar los pedidos del usuario
+		$pedido->setUsuarioId($usuario_id);
+		$pedidos = $pedido->getAll();
+
+		require_once 'views/pedido/index.php';
+	}
 	public function hacer()
 	{
 		if (isset($_SESSION['identity'])) {
 			$usuario_id = $_SESSION['identity']->Id;
-			print_r($usuario_id);
 			$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
 
 			$stats = Utils::statsCarrito();
@@ -29,44 +40,15 @@ class pedidoController
 					$_SESSION['pedido'] = "complete";
 				} else {
 					$_SESSION['pedido'] = "failed";
-					header("Location:" . base_url . 'pedido/confirmado');
 				}
 			} else {
 				$_SESSION['pedido'] = "failed";
 			}
-
 		} else {
 			// Redigir al index
 			header("Location:" . base_url);
 		}
-	}
-
-	// public function confirmado()
-	// {
-	// 	if (isset($_SESSION['identity'])) {
-	// 		$identity = $_SESSION['identity'];
-	// 		$pedido = new Pedido();
-	// 		$pedido->setUsuarioId($identity->id);
-
-	// 		$pedido = $pedido->getOneByUser();
-
-	// 		$pedido_productos = new Pedido();
-	// 		$productos = $pedido_productos->getProductosByPedido($pedido->id);
-	// 	}
-	// 	require_once 'views/pedido/confirmado.php';
-	// }
-
-	public function mis_pedidos()
-	{
-		Utils::isIdentity();
-		$usuario_id = $_SESSION['identity']->id;
-		$pedido = new Pedido();
-
-		// Sacar los pedidos del usuario
-		$pedido->setUsuarioId($usuario_id);
-		$pedidos = $pedido->getAllByUser();
-
-		require_once 'views/pedido/mis_pedidos.php';
+		header("Location:" . base_url);
 	}
 
 	public function detalle()
@@ -87,7 +69,7 @@ class pedidoController
 
 			require_once 'views/pedido/detalle.php';
 		} else {
-			header('Location:' . base_url . 'pedido/mis_pedidos');
+			header('Location:' . base_url . 'pedido/index');
 		}
 	}
 
@@ -102,23 +84,25 @@ class pedidoController
 		require_once 'views/pedido/mis_pedidos.php';
 	}
 
-	// public function estado()
-	// {
-	// 	Utils::isAdmin();
-	// 	if (isset($_POST['pedido_id']) && isset($_POST['estado'])) {
-	// 		// Recoger datos form
-	// 		$id = $_POST['pedido_id'];
-	// 		$estado = $_POST['estado'];
+	public function eliminar()
+	{
+		Utils::isAdmin();
 
-	// 		// Upadate del pedido
-	// 		$pedido = new Pedido();
-	// 		$pedido->setId($id);
-	// 		$pedido->setEstado($estado);
-	// 		$pedido->edit();
+		if (isset($_GET['id'])) {
+			$id = $_GET['id'];
+			$producto = new Pedido();
+			$producto->setId($id);
 
-	// 		header("Location:" . base_url . 'pedido/detalle&id=' . $id);
-	// 	} else {
-	// 		header("Location:" . base_url);
-	// 	}
-	// }
+			$delete = $producto->delete();
+			if ($delete) {
+				$_SESSION['delete'] = 'complete';
+			} else {
+				$_SESSION['delete'] = 'failed';
+			}
+		} else {
+			$_SESSION['delete'] = 'failed';
+		}
+
+		header('Location:' . base_url . 'pedido/index');
+	}
 }
