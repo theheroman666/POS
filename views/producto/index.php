@@ -1,8 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="btn btn-outline-dark rounded-pill" href="<?= base_url . 'Home/index.php' ?>">Regresar</a>
-    </div>
-</nav>
+
 <div class="container-fluid text-center">
     <div class="container">
         <h1 class="display-5">Inventario proveedores</h1>

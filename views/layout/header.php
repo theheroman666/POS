@@ -27,7 +27,7 @@
                         <a class="nav-link active" href="<?= base_url ?>Inventario/index">Inventario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url ?>producto/index">Producto</a>
+                        <a class="nav-link active" href="<?= base_url ?>producto/gestion">Producto</a>
                     </li>
                     <?php if (isset($_SESSION['identity'])) { ?>
                         <li class="nav-item">
