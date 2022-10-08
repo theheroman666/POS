@@ -1,11 +1,11 @@
 <?php
-require_once 'models/producto.php';
+require_once 'models/inventario.php';
 
-class productoController{
+class InventarioController{
 	
 	public function index(){
-		$producto = new Producto();
-		$productos = $producto->getRandom(6);
+		$inventario = new Inventario();
+		$productos = $inventario->getAll();
 	
 		// renderizar vista
 		require_once 'views/Inventario/index.php';
@@ -15,7 +15,7 @@ class productoController{
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
 		
-			$producto = new Producto();
+			$producto = new Inventario();
 			$producto->setId($id);
 			
 			$product = $producto->getOne();
@@ -26,34 +26,29 @@ class productoController{
 	
 	public function gestion(){
 		Utils::isAdmin();
-		$producto = new Producto();
+		$producto = new Inventario();
 		$productos = $producto->getAll();
 		
-		require_once 'views/producto/gestion.php';
+		require_once 'views/inventario/gestion.php';
 	}
 	
 	public function crear(){
 		Utils::isAdmin();
-		require_once 'views/producto/crear.php';
+		require_once 'views/inventario/agregar.php';
 	}
 	
 	public function save(){
 		Utils::isAdmin();
 		if(isset($_POST)){
 			$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-			$descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : false;
-			$precio = isset($_POST['precio']) ? $_POST['precio'] : false;
 			$stock = isset($_POST['stock']) ? $_POST['stock'] : false;
-			$categoria = isset($_POST['categoria']) ? $_POST['categoria'] : false;
-			// $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : false;
+			$Costo = isset($_POST['CostoM']) ? $_POST['CostoM'] : false;
 			
-			if($nombre && $descripcion && $precio && $stock && $categoria){
-				$producto = new Producto();
+			if($nombre && $stock){
+				$producto = new Inventario();
 				$producto->setNombre($nombre);
-				$producto->setDescripcion($descripcion);
-				$producto->setPrecio($precio);
+				$producto->setCosto($Costo);
 				$producto->setStock($stock);
-				$producto->setCategoria_id($categoria);
 				
 				// Guardar la imagen
 				if(isset($_FILES['imagen'])){
@@ -101,12 +96,12 @@ class productoController{
 			$id = $_GET['id'];
 			$edit = true;
 			
-			$producto = new Producto();
+			$producto = new Inventario();
 			$producto->setId($id);
 			
 			$pro = $producto->getOne();
 			
-			require_once 'views/producto/crear.php';
+			require_once 'views/inventario/editar.php';
 			
 		}else{
 			header('Location:'.base_url.'producto/gestion');
@@ -118,7 +113,7 @@ class productoController{
 		
 		if(isset($_GET['id'])){
 			$id = $_GET['id'];
-			$producto = new Producto();
+			$producto = new Inventario();
 			$producto->setId($id);
 			
 			$delete = $producto->delete();

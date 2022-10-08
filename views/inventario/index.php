@@ -8,7 +8,7 @@
         <h1 class="display-5">Inventario proveedores</h1>
         <hr>
         <div>
-            <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'inventario/agregar' ?>">Agregar</a>
+            <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'inventario/crear' ?>">Agregar</a>
         </div>
     </div>
 
@@ -21,18 +21,16 @@
                             <th scope="col">Imgen</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Stock</th>
-                            <th scope="col">Precio</th>
                             <th scope="col">Costo</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($items = $producto->fetch_object()) { ?>
+                        <?php while ($items = $productos->fetch_object()) { ?>
                             <tr class="row-cols-6">
                                 <td classs="col"><img width="75px" height="55px" src="<?= base_url . 'uploads/images/' . $items->Imagen ?>"></td>
                                 <td classs="col"><?= $items->Nombre ?></td>
                                 <td classs="col"><?= $items->Stock ?></td>
-                                <td classs="col"><?= $items->Precio ?></td>
                                 <td classs="col"><?= $items->Costo ?></td>
                                 <td classs="col"><a href="<?= base_url . 'Inventario/editar&id=' . $items->Id ?>">Editar</a>
                                     <a href="<?= base_url . 'Inventario/eliminar&id=' . $items->Id ?>">Eliminar</a>

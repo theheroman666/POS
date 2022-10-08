@@ -6,10 +6,6 @@
                 <input type="text" class="form-control" value="<?= isset($pro) && is_object($pro) ? $pro->Nombre : ''; ?>" name="nombre">
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Precio</label>
-                <input type="number" class="form-control" name="precio" value="<?= isset($pro) && is_object($pro) ? $pro->Precio : ''; ?>">
-            </div>
-            <div class="mb-3">
                 <label for="name" class="form-label">Stock</label>
                 <input type="number" class="form-control" name="stock" value="<?= isset($pro) && is_object($pro) ? $pro->Stock : ''; ?>">
             </div>

@@ -2,12 +2,9 @@
 
 class Producto{
 	private $id;
-	private $categoria_id;
 	private $nombre;
-	private $descripcion;
 	private $precio;
 	private $stock;
-	private $oferta;
 	private $fecha;
 	private $imagen;
 
@@ -21,17 +18,13 @@ class Producto{
 		return $this->id;
 	}
 
-	function getCategoria_id() {
-		return $this->categoria_id;
-	}
+	
 
 	function getNombre() {
 		return $this->nombre;
 	}
 
-	function getDescripcion() {
-		return $this->descripcion;
-	}
+	
 
 	function getPrecio() {
 		return $this->precio;
@@ -39,10 +32,6 @@ class Producto{
 
 	function getStock() {
 		return $this->stock;
-	}
-
-	function getOferta() {
-		return $this->oferta;
 	}
 
 	function getFecha() {
@@ -57,16 +46,8 @@ class Producto{
 		$this->id = $id;
 	}
 
-	function setCategoria_id($categoria_id) {
-		$this->categoria_id = $categoria_id;
-	}
-
 	function setNombre($nombre) {
 		$this->nombre = $this->db->real_escape_string($nombre);
-	}
-
-	function setDescripcion($descripcion) {
-		$this->descripcion = $this->db->real_escape_string($descripcion);
 	}
 
 	function setPrecio($precio) {
@@ -75,10 +56,6 @@ class Producto{
 
 	function setStock($stock) {
 		$this->stock = $this->db->real_escape_string($stock);
-	}
-
-	function setOferta($oferta) {
-		$this->oferta = $this->db->real_escape_string($oferta);
 	}
 
 	function setFecha($fecha) {
@@ -91,15 +68,6 @@ class Producto{
 
 	public function getAll(){
 		$productos = $this->db->query("SELECT * FROM productos ORDER BY id DESC");
-		return $productos;
-	}
-	
-	public function getAllCategory(){
-		$sql = "SELECT p.*, c.nombre AS 'catnombre' FROM productos p "
-				. "INNER JOIN categorias c ON c.id = p.categoria_id "
-				. "WHERE p.categoria_id = {$this->getCategoria_id()} "
-				. "ORDER BY id DESC";
-		$productos = $this->db->query($sql);
 		return $productos;
 	}
 	
