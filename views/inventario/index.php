@@ -1,11 +1,7 @@
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="btn btn-outline-dark rounded-pill" href="<?= base_url . 'Home/index.php' ?>">Regresar</a>
-    </div>
-</nav>
+
 <div class="container-fluid text-center">
     <div class="container">
-        <h1 class="display-5">Inventario proveedores</h1>
+        <h1 class="display-5">Inventario</h1>
         <hr>
         <div>
             <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'inventario/crear' ?>">Agregar</a>
