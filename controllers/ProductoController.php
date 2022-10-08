@@ -4,8 +4,8 @@ require_once 'models/producto.php';
 class productoController{
 	
 	public function index(){
-		$producto = new Producto();
-		$productos = $producto->getRandom(6);
+		$productos = new Producto();
+		$producto = $productos->getAll();
 	
 		// renderizar vista
 		require_once 'views/Home/index.php';
@@ -30,7 +30,7 @@ class productoController{
 		$producto = new Producto();
 		$productos = $producto->getAll();
 		
-		require_once 'views/producto/gestion.php';
+		require_once 'views/producto/index.php';
 	}
 	
 	public function crear(){
@@ -42,19 +42,14 @@ class productoController{
 		Utils::isAdmin();
 		if(isset($_POST)){
 			$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-			$descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : false;
 			$precio = isset($_POST['precio']) ? $_POST['precio'] : false;
 			$stock = isset($_POST['stock']) ? $_POST['stock'] : false;
-			$categoria = isset($_POST['categoria']) ? $_POST['categoria'] : false;
-			// $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : false;
 			
-			if($nombre && $descripcion && $precio && $stock && $categoria){
+			if($nombre && $precio && $stock){
 				$producto = new Producto();
 				$producto->setNombre($nombre);
-				$producto->setDescripcion($descripcion);
 				$producto->setPrecio($precio);
 				$producto->setStock($stock);
-				$producto->setCategoria_id($categoria);
 				
 				// Guardar la imagen
 				if(isset($_FILES['imagen'])){
@@ -107,7 +102,7 @@ class productoController{
 			
 			$pro = $producto->getOne();
 			
-			require_once 'views/producto/crear.php';
+			require_once 'views/producto/editar.php';
 			
 		}else{
 			header('Location:'.base_url.'producto/gestion');

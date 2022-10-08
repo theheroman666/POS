@@ -133,7 +133,7 @@ class Pedido
 		foreach ($_SESSION['carrito'] as $elemento) {
 			$producto = $elemento['producto'];
 
-			$insert = "INSERT INTO lineas_pedidos VALUES(NULL, {$pedido_id}, {$producto->id}, {$elemento['unidades']}, NULL)";
+			$insert = "INSERT INTO orden VALUES(NULL, {$pedido_id}, {$producto->Id}, {$elemento['unidades']}, NULL)";
 			$save = $this->db->query($insert);
 		}
 

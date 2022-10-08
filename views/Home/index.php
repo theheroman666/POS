@@ -16,6 +16,7 @@
         <h1 class="display-5">Productos a cobrar</h1>
 
         <a class="btn btn-primary" href="<?= base_url . 'Inventario/index' ?>">Inventario</a>
+        <a class="btn btn-primary" href="<?= base_url . 'Productos/index' ?>">Productos</a>
         <hr />
         <?php if (isset($_SESSION['producto']) == 'complete') { ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -41,13 +42,17 @@
                     <!-- ELIMINAR PARA Comprobar Datos linea 52 hasta linea 73-->
                     <?php
                     while ($items = $producto->fetch_object()) { ?>
-                        <div class="col contenedores">
+                        <div class="col contenedores m-auto">
                             <?php if ($items->Stock != 0) { ?>
-                                <a href="<?= base_url . 'carrito/add&id=' . $items->Id ?>">
-                                    <button id="gorditas" class="botones">
-                                        <img class="platillos" src="<?= base_url . 'uploads/images/' . $items->Imagen ?>">
-                                    </button>
-                                </a>
+                                <div class="card col-9">
+                                    <a href="<?= base_url . 'carrito/add&id=' . $items->Id ?>">
+                                        <img src="<?= base_url . 'uploads/images/' . $items->Imagen ?>" class="card-img-top" alt="...">
+                                        <div class="card-body">
+                                            <p class="card-text"><?= $items->Nombre ?></p>
+                                        </div>
+                                    </a>
+                                </div>
+
                             <?php } else { ?>
                                 <div id="gorditas" class="botones">
                                     <img class="platillos" src="<?= base_url . 'uploads/images/' . $items->Imagen ?>">

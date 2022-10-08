@@ -6,7 +6,8 @@ class pedidoController
 	public function hacer()
 	{
 		if (isset($_SESSION['identity'])) {
-			$usuario_id = $_SESSION['identity']->id;
+			$usuario_id = $_SESSION['identity']->Id;
+			print_r($usuario_id);
 			$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
 
 			$stats = Utils::statsCarrito();
@@ -28,12 +29,12 @@ class pedidoController
 					$_SESSION['pedido'] = "complete";
 				} else {
 					$_SESSION['pedido'] = "failed";
+					header("Location:" . base_url . 'pedido/confirmado');
 				}
 			} else {
 				$_SESSION['pedido'] = "failed";
 			}
 
-			header("Location:" . base_url . 'pedido/confirmado');
 		} else {
 			// Redigir al index
 			header("Location:" . base_url);
