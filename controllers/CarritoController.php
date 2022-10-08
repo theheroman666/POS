@@ -20,7 +20,7 @@ class carritoController{
 		}else{
 			$carrito = array();
 		}
-		require_once 'views/carrito/index.php';
+		require_once 'views/carrito/indexInventario.php';
 	}
 
 	public function add(){
@@ -49,8 +49,8 @@ class carritoController{
 			// Añadir al carrito
 			if(is_object($producto)){
 				$_SESSION['carrito'][] = array(
-					"id_producto" => $producto->id,
-					"precio" => $producto->precio,
+					"id_producto" => $producto->Id,
+					"precio" => $producto->Precio,
 					"unidades" => 1,
 					"producto" => $producto
 				);
