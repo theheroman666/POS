@@ -7,21 +7,17 @@ class pedidoController
 	{
 		if (isset($_SESSION['identity'])) {
 			$usuario_id = $_SESSION['identity']->id;
-			$provincia = isset($_POST['provincia']) ? $_POST['provincia'] : false;
-			$localidad = isset($_POST['localidad']) ? $_POST['localidad'] : false;
-			$direccion = isset($_POST['direccion']) ? $_POST['direccion'] : false;
+			$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
 
 			$stats = Utils::statsCarrito();
-			$coste = $stats['total'];
+			$costo = $stats['total'];
 
-			if ($provincia && $localidad && $direccion) {
+			if ($usuario_id && $DineroRecibido && $costo) {
 				// Guardar datos en bd
 				$pedido = new Pedido();
-				$pedido->setUsuario_id($usuario_id);
-				$pedido->setProvincia($provincia);
-				$pedido->setLocalidad($localidad);
-				$pedido->setDireccion($direccion);
-				$pedido->setCoste($coste);
+				$pedido->setUsuarioId($usuario_id);
+				$pedido->setTotal($costo);
+				$pedido->setDineroRecibido($DineroRecibido);
 
 				$save = $pedido->save();
 
@@ -44,20 +40,20 @@ class pedidoController
 		}
 	}
 
-	public function confirmado()
-	{
-		if (isset($_SESSION['identity'])) {
-			$identity = $_SESSION['identity'];
-			$pedido = new Pedido();
-			$pedido->setUsuario_id($identity->id);
+	// public function confirmado()
+	// {
+	// 	if (isset($_SESSION['identity'])) {
+	// 		$identity = $_SESSION['identity'];
+	// 		$pedido = new Pedido();
+	// 		$pedido->setUsuarioId($identity->id);
 
-			$pedido = $pedido->getOneByUser();
+	// 		$pedido = $pedido->getOneByUser();
 
-			$pedido_productos = new Pedido();
-			$productos = $pedido_productos->getProductosByPedido($pedido->id);
-		}
-		require_once 'views/pedido/confirmado.php';
-	}
+	// 		$pedido_productos = new Pedido();
+	// 		$productos = $pedido_productos->getProductosByPedido($pedido->id);
+	// 	}
+	// 	require_once 'views/pedido/confirmado.php';
+	// }
 
 	public function mis_pedidos()
 	{
@@ -66,7 +62,7 @@ class pedidoController
 		$pedido = new Pedido();
 
 		// Sacar los pedidos del usuario
-		$pedido->setUsuario_id($usuario_id);
+		$pedido->setUsuarioId($usuario_id);
 		$pedidos = $pedido->getAllByUser();
 
 		require_once 'views/pedido/mis_pedidos.php';
@@ -105,23 +101,23 @@ class pedidoController
 		require_once 'views/pedido/mis_pedidos.php';
 	}
 
-	public function estado()
-	{
-		Utils::isAdmin();
-		if (isset($_POST['pedido_id']) && isset($_POST['estado'])) {
-			// Recoger datos form
-			$id = $_POST['pedido_id'];
-			$estado = $_POST['estado'];
+	// public function estado()
+	// {
+	// 	Utils::isAdmin();
+	// 	if (isset($_POST['pedido_id']) && isset($_POST['estado'])) {
+	// 		// Recoger datos form
+	// 		$id = $_POST['pedido_id'];
+	// 		$estado = $_POST['estado'];
 
-			// Upadate del pedido
-			$pedido = new Pedido();
-			$pedido->setId($id);
-			$pedido->setEstado($estado);
-			$pedido->edit();
+	// 		// Upadate del pedido
+	// 		$pedido = new Pedido();
+	// 		$pedido->setId($id);
+	// 		$pedido->setEstado($estado);
+	// 		$pedido->edit();
 
-			header("Location:" . base_url . 'pedido/detalle&id=' . $id);
-		} else {
-			header("Location:" . base_url);
-		}
-	}
+	// 		header("Location:" . base_url . 'pedido/detalle&id=' . $id);
+	// 	} else {
+	// 		header("Location:" . base_url);
+	// 	}
+	// }
 }

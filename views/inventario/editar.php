@@ -29,3 +29,4 @@
     <?php } else {
         header('Location:' . base_url . 'inventario/index');
     } ?>
+    
