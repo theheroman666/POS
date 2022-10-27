@@ -3,9 +3,6 @@
     <div class="container">
         <h1 class="display-5">Pedidos</h1>
         <hr>
-        <div>
-            <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'inventario/crear' ?>">Agregar</a>
-        </div>
     </div>
 
     <div class="text-center container">

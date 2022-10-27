@@ -4,6 +4,8 @@ require_once 'models/usuario.php';
 class usuarioController{
 	
 	public function index(){
+		$users = new  Usuario();
+		$user = $users->getAll();
 		require_once('views/Usuarios/login.php');
 	}
 	
