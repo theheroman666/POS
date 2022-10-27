@@ -4,6 +4,7 @@ require_once 'models/inventario.php';
 class InventarioController{
 	
 	public function index(){
+		Utils::isAdmin();
 		$inventario = new Inventario();
 		$productos = $inventario->getAll();
 	
@@ -22,14 +23,6 @@ class InventarioController{
 			
 		}
 		require_once 'views/producto/ver.php';
-	}
-	
-	public function gestion(){
-		Utils::isAdmin();
-		$producto = new Inventario();
-		$productos = $producto->getAll();
-		
-		require_once 'views/inventario/gestion.php';
 	}
 	
 	public function crear(){
