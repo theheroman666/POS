@@ -4,6 +4,7 @@ require_once 'models/inventario.php';
 class InventarioController{
 	
 	public function index(){
+		Utils::isAdmin();
 		$inventario = new Inventario();
 		$productos = $inventario->getAll();
 	
