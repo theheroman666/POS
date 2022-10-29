@@ -1,13 +1,13 @@
-<h1>Carrito de la compra</h1>
+<p class="fs-2 titulo">Carrito de la compra</p>
 
 <?php if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) >= 1) : ?>
     <table class="table">
         <tr>
-            <th>Imagen</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Unidades</th>
-            <th>Eliminar</th>
+            <th class="titulo">Imagen</th>
+            <th class="titulo">Nombre</th>
+            <th class="titulo">Precio</th>
+            <th class="titulo">Unidades</th>
+            <th class="titulo">Eliminar</th>
         </tr>
         <form action="<?= htmlspecialchars(base_url . 'pedido/hacer') ?>" method="post">
             <?php $stats = Utils::statsCarrito(); ?>
@@ -17,34 +17,33 @@
                 <tr class="row-cols-7">
                     <td class="col">
                         <?php if ($producto->Imagen != null) : ?>
-                            <img src="<?= base_url ?>uploads/images/<?= $producto->Imagen ?>" width="75px" height="55px" />
+                            <img src="<?= base_url ?>uploads/images/<?= $producto->Imagen ?>" width="75px" height="55px" class="rounded" />
                         <?php endif; ?>
                     </td>
-                    <td class="col">
+                    <td class="col parrafo pt-4">
                         <a class="nav-link text-dark" href="<?= base_url ?>producto/ver&id=<?= $producto->Id ?>"><?= $producto->Nombre ?></a>
                     </td>
-                    <td class="col">
+                    <td class="col parrafo pt-4">
                         <?= $producto->Precio ?>
                         <!-- <?= $precio ?> -->
                     </td>
-                    <td class="col">
+                    <td class="col parrafo pt-4">
                         <?= $elemento['unidades'] ?>
                         <div class="updown-unidades">
                             <input type="text" hidden value="<?= $producto->Id ?>" name="Id">
                             <input type="number" hidden value="<?= $elemento['unidades'] ?>" name="cantidad">
+                            <!-- Validar Stock -->
+                            <?php if ($elemento['unidades'] <  $producto->Stock) { ?>
+                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn" style="width: 10px;">+</a>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="width: 10px;">-</a>
+                            <?php } else { ?>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn btn-outline-danger">-</a>
 
+                            <?php } ?>
                         </div>
                     </td>
-                    <td class="col">
-                        <!-- Validar Stock -->
-                        <?php if ($elemento['unidades'] <  $producto->Stock) { ?>
-                            <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn btn-outline-success">+</a>
-                            <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn btn-outline-danger">-</a>
+                    <td class="col parrafo pt-2">
 
-                        <?php } else { ?>
-                            <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn btn-outline-danger">-</a>
-
-                        <?php } ?>
                         <a href="<?= base_url ?>carrito/delete&index=<?= $indice ?>" class="btn btn-outline-danger bi bi-trash3-fill boton-borrar"></a>
                     </td>
                     </div>

@@ -5,13 +5,16 @@
     <title>Inventario Quesadillas el Comal</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="<?= base_url ?>wwwroot/css/site.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
+        <div class="container-fluid d-flex">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,18 +32,28 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="<?= base_url ?>producto/gestion">Producto</a>
                     </li>
-                    <?php if (isset($_SESSION['identity'])) { ?>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-danger" href="<?= base_url ?>usuario/logout">Cerrar sesión</a>
+                </ul>
+            </div>
+            <div class="" style="float: right;">
+                <div class="btn-group dropstart">
+                    <button type="button" class="btn rounded" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle" style="font-size: 40px;"></i>
+                    </button>
+                    <ul class="dropdown-menu fs-5 titulo" style="margin-top: 73px;">
+                        <li><a class="dropdown-item" href="#">Cambiar de usuario</a></li>
+                        <hr>
+                        <?php if (isset($_SESSION['identity'])) { ?>
+                        <li>
+                            <a class="dropdown-item" href="<?= base_url ?>usuario/logout">Cerrar sesión</a>
 
                         </li>
                     <?php } else { ?>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="<?= base_url ?>usuario/index">Iniciar sesion</a>
+                        <li>
+                            <a class="dropdown-item" href="<?= base_url ?>usuario/index">Iniciar sesion</a>
                         </li>
                     <?php } ?>
-
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>

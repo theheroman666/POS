@@ -4,7 +4,7 @@
         <h1 class="display-5">Inventario proveedores</h1>
         <hr>
         <div>
-            <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'inventario/crear' ?>">Agregar</a>
+            <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'producto/crear' ?>">Agregar</a>
         </div>
     </div>
 

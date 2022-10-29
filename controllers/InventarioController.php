@@ -4,6 +4,7 @@ require_once 'models/inventario.php';
 class InventarioController{
 	
 	public function index(){
+		Utils::isAdmin();
 		$inventario = new Inventario();
 		$productos = $inventario->getAll();
 	
@@ -34,7 +35,7 @@ class InventarioController{
 	
 	public function crear(){
 		Utils::isAdmin();
-		require_once 'views/inventario/agregar.php';
+		require_once 'views/Inventario/agregar.php';
 	}
 	
 	public function save(){
@@ -101,7 +102,7 @@ class InventarioController{
 			
 			$pro = $producto->getOne();
 			
-			require_once 'views/inventario/editar.php';
+			require_once 'views/Inventario/editar.php';
 			
 		}else{
 			header('Location:'.base_url.'producto/gestion');

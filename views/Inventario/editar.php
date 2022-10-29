@@ -23,6 +23,6 @@
             </div>
         </form>
     <?php } else {
-        header('Location:' . base_url . 'inventario/index');
+        header('Location:' . base_url . 'Inventario/index');
     } ?>
     

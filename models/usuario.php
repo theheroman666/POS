@@ -82,5 +82,10 @@ class Usuario{
 		$productos = $this->db->query("SELECT * FROM roles ORDER BY id ASC");
 		return $productos;
 	}
+
+	public function getAll(){
+		$users = $this->db->query("SELECT id, nombre FROM usuarios ");
+		return $users;
+	}
 	
 }
