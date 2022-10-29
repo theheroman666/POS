@@ -6,10 +6,10 @@
             <th class="titulo">Imagen</th>
             <th class="titulo">Nombre</th>
             <th class="titulo">Precio</th>
-            <th class="titulo">Unidades</th>
+            <th class="titulo">Cantidad</th>
             <th class="titulo">Eliminar</th>
         </tr>
-        <form action="<?= base_url . 'pedido/hacer' ?>" method="post">
+        <form action="<?= htmlspecialchars(base_url . 'pedido/hacer') ?>" method="post">
             <?php $stats = Utils::statsCarrito(); ?>
             <?php foreach ($carrito as $indice => $elemento) :
                 $producto = $elemento['producto']; ?>
@@ -27,22 +27,22 @@
                         <?= $producto->Precio ?>
                         <!-- <?= $precio ?> -->
                     </td>
-                    <td class="col parrafo pt-4">
+                    <td class="col parrafo pt-2">
                         <?= $elemento['unidades'] ?>
                         <div class="updown-unidades">
                             <input type="text" hidden value="<?= $producto->Id ?>" name="Id">
                             <input type="number" hidden value="<?= $elemento['unidades'] ?>" name="cantidad">
                             <!-- Validar Stock -->
                             <?php if ($elemento['unidades'] <  $producto->Stock) { ?>
-                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn" style="width: 10px;">+</a>
-                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="width: 10px;">-</a>
+                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">+</a>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">-</a>
                             <?php } else { ?>
-                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn btn-outline-danger">-</a>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">-</a>
 
                             <?php } ?>
                         </div>
                     </td>
-                    <td class="col parrafo pt-2">
+                    <td class="col parrafo pt-3">
 
                         <a href="<?= base_url ?>carrito/delete&index=<?= $indice ?>" class="btn btn-outline-danger bi bi-trash3-fill boton-borrar"></a>
                     </td>
@@ -53,10 +53,10 @@
 
     </table>
     <br />
-    <label>Ingresar dinero recibido</label><br>
-    <input type="number" name="Dinero" id="dinero" class="form-control w-50 m-auto border-5 border-danger" required>
+    <label class="parrafo">Ingresar dinero recibido</label><br>
+    <input type="number" name="Dinero" id="dinero" class="form-control parrafo w-50 m-auto border-5 border-danger" required>
     <br>
-    <div>
+    <div class="titulo">
         <input type="number" value="<?= $stats['total'] ?>" hidden id="total">
         <h3>Precio total: <?= $stats['total'] ?> $</h3>
         <h3 id="h3"></h3>
@@ -64,15 +64,15 @@
 
     </div>
     <br>
-    <div>
-        <button type="submit" class="btn col-4 btn-outline-success">Enviar</button>
-        <a href="<?= base_url ?>carrito/delete_all" class="col-4 button button-delete button-red btn btn-danger text-light">Eliminar</a>
+    <div class="titulo">
+        <button type="submit" class="btn col-4 rounded-3" style="background-color: #ff5e00d7; border:0;">Enviar</button>
+        <a href="<?= base_url ?>carrito/delete_all" class="col-4 btn" style="border: 1px solid black;">Eliminar</a>
     </div>
     </form>
 
 
 <?php else : ?>
-    <p>El carrito está vacio, añade algun producto</p>
+    <p class="titulo">El carrito está vacio, añade algun producto</p>
 <?php endif; ?>
 <!-- Bootstrap JavaScript Libraries -->
 <script>

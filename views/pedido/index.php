@@ -1,6 +1,6 @@
 
 <div class="container-fluid text-center">
-    <div class="container">
+    <div class="container titulo">
         <h1 class="display-5">Pedidos</h1>
         <hr>
     </div>
@@ -9,9 +9,8 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <table class="table table-striped">
-                    <thead class="table table-dark">
+                    <thead class="table table-dark titulo">
                         <tr class="row-cols-6">
-                            <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Total</th>
                             <th scope="col">DineroRecibido</th>
@@ -21,8 +20,7 @@
                     </thead>
                     <tbody>
                         <?php while ($items = $pedidos->fetch_object()) { ?>
-                            <tr class="row-cols-6">
-                                <td classs="col"><?= $items->Id ?></td>
+                            <tr class="row-cols-6 parrafo">
                                 <td classs="col"><?= $items->Nombre ?></td>
                                 <td classs="col"><?= $items->Total ?></td>
                                 <td classs="col"><?= $items->DineroRecibido ?></td>
