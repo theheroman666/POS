@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function() {
         $('#comida').click(function() {
-            $('#tablaCarrito').load("../Carrito/indexInventario.php")
+            $('#tablaCarrito').load("<?= base_url?>/Carrito/indexInventario.php")
         })
     })
 </script>
