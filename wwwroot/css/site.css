@@ -47,18 +47,6 @@ body {
 .numero{
   padding-left: 10px;
 }
-
-.boton-borrar{
-  border-radius: 10px;
-  width: 50px;
-  transition: background-color 0.3s ease-in;
-}
-
-.boton-borrar:hover{
-  background-color: rgb(255, 0, 0);
-}
-
-
 /* ---------Estilos Inventario Proveedores--------- */
 
 
