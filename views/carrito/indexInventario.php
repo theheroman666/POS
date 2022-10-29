@@ -9,7 +9,7 @@
             <th>Unidades</th>
             <th>Eliminar</th>
         </tr>
-        <form action="<?= base_url . 'pedido/hacer' ?>" method="post">
+        <form action="<?= htmlspecialchars(base_url . 'pedido/hacer') ?>" method="post">
             <?php $stats = Utils::statsCarrito(); ?>
             <?php foreach ($carrito as $indice => $elemento) :
                 $producto = $elemento['producto']; ?>

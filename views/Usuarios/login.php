@@ -3,7 +3,7 @@
     <div class="col-6 m-auto">
 
 
-        <form action="<?= base_url ?>usuario/login" method="post" class="m-auto">
+        <form action="<?= htmlspecialchars(base_url.'usuario/login')?>" method="post" class="m-auto">
             <div class="mb-3">
                 <label for="Name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" name="Name" id="">
