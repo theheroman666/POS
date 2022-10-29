@@ -14,7 +14,7 @@
                 <table class="table table-striped">
                     <thead class="table table-dark">
                         <tr class="row-cols-6">
-                            <th scope="col">Imgen</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Stock</th>
                             <th scope="col">Costo</th>

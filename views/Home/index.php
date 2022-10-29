@@ -9,7 +9,7 @@
     <h1 class="titulo display-4">Productos a cobrar</h1>
     <hr />
     <?php if (isset($_SESSION['producto']) == 'complete') { ?>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <div class="alert alert-success titulo alert-dismissible fade show" role="alert">
             <strong>Producto Creado con exito</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -17,14 +17,14 @@
     } ?>
 
 <?php if (isset($_SESSION['pedido']) == 'complete') { ?>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <div class="alert alert-success alert-dismissible fade show titulo" role="alert">
         <strong>Compra realizada con exito</strong>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     
     <?php unset($_SESSION['pedido']);
     } elseif (isset($_SESSION['pedido']) == 'failed') { ?>
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div class="alert alert-danger alert-dismissible fade show titulo" role="alert">
             <strong>No se pudo realizar la Compra</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -49,7 +49,7 @@
                             </div>
 
                         <?php } else { ?>
-                            <div id="gorditas" class="botones">
+                            <div id="gorditas" class="botones titulo">
                                 <img class="platillos" src="<?= base_url . 'uploads/images/' . $items->Imagen ?>">
                                 NO Disponible
                             </div>
