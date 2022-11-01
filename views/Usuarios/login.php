@@ -6,7 +6,8 @@
             <?php while ($items = $user->fetch_object()) { ?>
                 <form action="<?= htmlspecialchars(base_url . 'usuario/login') ?>" method="POST" class="btn col-3 bg-light titulo rounded-5" id="hola123">
                     <div class="pt-2"></div>
-                    <input readonly class="form-control text-center fs-4" id="input1" name="Name" style="background-color: rgba(240, 248, 255, 0); border: 0;" value="<?= $items->nombre ?>">
+                    <label readonly disabled class="form-control text-center fs-4" id="input1" style="background-color: rgba(240, 248, 255, 0); border: 0;"><?= $items->nombre ?></label>
+                    <input value="<?= $items->nombre ?>" name="Name" class="visually-hidden">
                     <div class="mb-3 pt-2">
                         <img src="<?= base_url ?>wwwroot/imgs/flautas.jpg" class="rounded-circle imagen">
                     </div>

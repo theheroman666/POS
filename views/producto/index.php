@@ -1,7 +1,7 @@
 
 <div class="container-fluid text-center">
     <div class="container titulo">
-        <h1 class="display-5">Inventario proveedores</h1>
+        <h1 class="display-5">Inventario de productos</h1>
         <hr>
         <div>
             <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'producto/crear' ?>">Agregar</a>
@@ -25,11 +25,11 @@
                         <?php while ($items = $productos->fetch_object()) { ?>
                             <tr class="row-cols-6 parrafo">
                                 <td classs="col"><img width="75px" height="55px" class="rounded" src="<?= base_url . 'uploads/images/' . $items->Imagen ?>"></td>
-                                <td classs="col"><?= $items->Nombre ?></td>
-                                <td classs="col"><?= $items->Stock ?></td>
-                                <td classs="col"><?= $items->Precio ?></td>
-                                <td classs="col">
-                                    <a class="btn border-dark text-dark rounded" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
+                                <td classs="col" style="padding-top: 20px;"><?= $items->Nombre ?></td>
+                                <td classs="col" style="padding-top: 20px;"><?= $items->Stock ?></td>
+                                <td classs="col" style="padding-top: 20px;"><?= $items->Precio ?></td>
+                                <td classs="col" style="padding-top: 15px;">
+                                    <a class="btn border-success text-dark rounded" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
                                     <a class="btn btn-outline-danger rounded bi bi-trash3-fill" href="<?= base_url . 'producto/eliminar&id=' . $items->Id ?>">Eliminar</a>
                                 </td>
                             </tr>

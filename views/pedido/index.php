@@ -25,7 +25,7 @@
                                 <td classs="col"><?= $items->DineroRecibido ?></td>
                                 <td classs="col"><?= $items->Fecha ?></td>
                                 <td classs="col">
-                                    <a class="btn btn-outline-success text-dark" style="width: 71px; font-size:15px;" href="<?= base_url . 'pedido/detalle&id=' . $items->Id ?>">Detalles</a>
+                                    <a class="btn border-success text-dark" style="width: 71px; font-size:15px;" href="<?= base_url . 'pedido/detalle&id=' . $items->Id ?>">Detalles</a>
                                     <a class="btn btn-outline-danger bi bi-trash3-fill" style="width: 95px; font-size:15px;" href="<?= base_url . 'pedido/eliminar&id=' . $items->Id ?>">Eliminar</a>
                                 </td>
                             </tr>

@@ -103,7 +103,7 @@
 
 
 <?php else : ?>
-    <p class="titulo">El carrito está vacio, añade algun producto</p>
+    <p class="titulo">El carrito está vacio, añade algún producto</p>
 <?php endif; ?>
 <!-- Bootstrap JavaScript Libraries -->
 <script>
@@ -116,7 +116,7 @@
         if (b >= 0) {
             h3.innerText = `Cambio: $${b}`;
         } else {
-            h3.innerText = `La Cantidad ingresada debe ser mayor o igual al total`;
+            h3.innerText = `La cantidad ingresada debe ser mayor o igual al total`;
 
         }
     });
