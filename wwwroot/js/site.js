@@ -1,5 +1,5 @@
 ﻿/* -----Login: mostrar inut de contraseñas------ */
-var psw = document.getElementById('contraseñas'),
+/* var psw = document.getElementById('contraseñas'),
 asd = document.getElementById('hola123'),
 contador = 0;
 
@@ -18,4 +18,4 @@ function holaa() {
 }
 
 asd.addEventListener('click', holaa, true );
-
+ */
