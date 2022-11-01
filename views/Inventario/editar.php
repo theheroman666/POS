@@ -1,6 +1,6 @@
 
     <?php if (isset($pro->Id)) { ?>
-        <form action="<?= htmlspecialchars(base_url.'Inventario/save&id='.$pro->Id )?>" method="POST" enctype="multipart/form-data" class="col-6 m-auto">
+        <form action="<?= base_url ?>Inventario/save&id=<?= $pro->Id ?>" method="POST" enctype="multipart/form-data" class="col-6 m-auto">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" value="<?= isset($pro) && is_object($pro) ? $pro->Nombre : ''; ?>" name="nombre">
