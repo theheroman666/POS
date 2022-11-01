@@ -2,8 +2,6 @@
     <div class="container overflow-hidden g-4 text-center pt-3">
         <h1 class="titulo">¿Quién va a usar el sistema?</h1>
         <hr>
-
-        <i class="bi bi-car-front "></i>
         <div class="row g-5 justify-content-center">
             <?php while ($items = $user->fetch_object()) { ?>
                 <form action="<?= htmlspecialchars(base_url . 'usuario/login') ?>" method="POST" class="btn col-3 bg-light titulo rounded-5" id="hola123">
