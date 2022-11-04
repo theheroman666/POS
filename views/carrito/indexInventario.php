@@ -34,8 +34,8 @@
                             <input type="number" hidden value="<?= $elemento['unidades'] ?>" name="cantidad">
                             <!-- Validar Stock -->
                             <?php if ($elemento['unidades'] <  $producto->Stock) { ?>
-                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn border-success" style="height: 37px; width: 37px;">+</a>
-                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn border-danger" style="height: 37px; width: 37px;">-</a>
+                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn border-success" style="height: 37px; width: 35px;">+</a>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn border-danger" style="height: 37px; width: 35px;">-</a>
                             <?php } else { ?>
                                 <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">-</a>
 
@@ -110,14 +110,14 @@
     var num1 = document.getElementById("total").value;
     var num2 = document.getElementById("dinero");
     var h3 = document.getElementById("h3");
-    num2.addEventListener("focusout", function() {
+    num2.addEventListener("keyup", function() {
         let a = num2.value;
         let b = a - num1;
-        if (b >= 0) {
-            h3.innerText = `Cambio: $${b}`;
-        } else {
-            h3.innerText = `La cantidad ingresada debe ser mayor o igual al total`;
-
-        }
-    });
+            if (b >= 0) {
+                h3.innerText = `Cambio: $${b}`;
+            } else {
+                h3.innerText = `La cantidad ingresada debe ser mayor o igual al total`;
+    
+            }
+        });
 </script>
