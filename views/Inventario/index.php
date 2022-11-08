@@ -10,23 +10,23 @@
     <div class="row pt-3">
       <div class="col-7">
 
-        <h5 class="titulo fs-3">Productos disponibles</h5>
+        <h5 class="titulo fs-3">Productos </h5>
         <!-- ELIMINAR PARA Comprobar Datos linea 52 hasta linea 73-->
         <div class="pt-3">
           <div class="text-center container">
             <div class="row justify-content-center">
               <div class="col-11">
-                <table class="table">
-                  <thead class="table-light">
+                <table class="table" >
+                  <thead class="table-dark">
                     <tr class="row-cols-2 titulo">
                       <th scope="col ">Producto</th>
-                      <th scope="col ">Cantidad comprada (pesos)</th>
+                      <th scope="col ">Comprar</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr class="row-cols-2 parrafo">
                       <td class="col">masa</td>
-                      <td class="col"><a class="btn btn-outline-dark rounded-pill">Agregar</a>
+                      <td class="col"><a class="btn" style="background-color: #fff; border:1px solid black; color:#004000;">Agregar</a>
                       </td>
                     </tr>
                   </tbody>
@@ -41,7 +41,7 @@
         <h5 class="titulo fs-3">Lista</h5>
         <table class="table">
           <div class="pt-3">
-            <thead class="table-light">
+            <thead class="table-dark">
               <tr class="row row-cols-4">
                 <th class="col">Nombre</th>
                 <th class="col">Cantidad</th>
@@ -69,7 +69,7 @@
               </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn btn-outline-success rounded-pill">Teminar</button>
+        <button type="submit" class="btn " style="background-color: #fff; border:1px solid black; color:#004000;">Teminar</button>
       </div>
     </div>
   </div>

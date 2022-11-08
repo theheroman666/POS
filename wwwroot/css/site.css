@@ -51,21 +51,12 @@ body {
 
 
 .boton-back {
-  padding: 9px;
-  width: 20%;
-  height: 100%;
+  width: 140px;
+  height: 50px;
   float: left;
-  font-size: 22px;
   background: #ff5e00d7 !important;
-  transition: .5s ease-in-out !important;
-  
-  
 }
 
-.boton-back:hover {
-  background-color: #f7fff7 !important;
-
-}
 
 .agregarInventario{
   height: 50px;

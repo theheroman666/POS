@@ -27,7 +27,6 @@
             <hr>
         </div>
     </div>
-
 <?php
 } else {
     header('Location:' . base_url);

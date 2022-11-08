@@ -1,4 +1,4 @@
-<p class="fs-2 titulo">Carrito de la compra</p>
+<p class="fs-2 titulo">Carrito </p>
 
 <?php if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) >= 1) : ?>
     <table class="table">
@@ -34,8 +34,8 @@
                             <input type="number" hidden value="<?= $elemento['unidades'] ?>" name="cantidad">
                             <!-- Validar Stock -->
                             <?php if ($elemento['unidades'] <  $producto->Stock) { ?>
-                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">+</a>
-                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">-</a>
+                                <a href="<?= base_url ?>carrito/up&index=<?= $indice ?>" class="btn border-success" style="height: 37px; width: 35px;">+</a>
+                                <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn border-danger" style="height: 37px; width: 35px;">-</a>
                             <?php } else { ?>
                                 <a href="<?= base_url ?>carrito/down&index=<?= $indice ?>" class="btn" style="height: 37px; width: 37px;">-</a>
 
@@ -64,29 +64,60 @@
 
     </div>
     <br>
-    <div class="titulo">
-        <button type="submit" class="btn col-4 rounded-3" style="background-color: #ff5e00d7; border:0;">Enviar</button>
-        <a href="<?= base_url ?>carrito/delete_all" class="col-4 btn" style="border: 1px solid black;">Eliminar</a>
+    <div class="titulo mb-5">
+        <button type="submit" class="btn col-4 fs-5 " style="background-color: #ff5e00d7; border:0; height: 60px;">Enviar</button>
+        <a href="<?= base_url ?>carrito/delete_all" class="btn col-4 fs-5" style="border: 1px solid black; height: 60px; padding-top: 14px;">Eliminar</a>
+        <!-- ========== Start Modal para confirmar "Borrar carrito" ========== -->
+        <!-- <button type="button" class="btn col-4 fs-5" style="border: 1px solid black; height: 60px; padding-top: 14px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Eliminar
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog bg-body rounded-4 shadow-lg position-absolute top-50 start-50 translate-middle">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="post" class="align-items-center">
+                            <div class="text-danger"></div>
+                            <div class="form-group row justify-content-center text-center">
+                                <div class="col-12 mb-4 pt-4">
+                                    <label class="titulo fs-4">Ingresa la clave de administrador</label>
+                                </div>
+                                <div class="col-6 pt-2">
+                                    <div class="input-group">
+                                        <input type="password" class="form-control" style="border-radius: 20px 0 0 20px;"/>
+                                        <button type="submit" class="btn border-secondary bg-light" style="border-radius: 0 20px 20px 0;"><i class="bi bi-arrow-right fs-5"></i></button>
+                                    </div>
+                                </div>
+                                <span class="text-danger"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- ========== End Modal para confirmar "Borrar carrito" ========== -->
     </div>
     </form>
 
 
 <?php else : ?>
-    <p class="titulo">El carrito está vacio, añade algun producto</p>
+    <p class="titulo">El carrito está vacio, añade algún producto</p>
 <?php endif; ?>
 <!-- Bootstrap JavaScript Libraries -->
 <script>
     var num1 = document.getElementById("total").value;
     var num2 = document.getElementById("dinero");
     var h3 = document.getElementById("h3");
-    num2.addEventListener("focusout", function() {
+    num2.addEventListener("keyup", function() {
         let a = num2.value;
         let b = a - num1;
-        if (b >= 0) {
-            h3.innerText = `Cambio: $${b}`;
-        } else {
-            h3.innerText = `La Cantidad ingresada debe ser mayor o igual al total`;
-
-        }
-    });
+            if (b >= 0) {
+                h3.innerText = `Cambio: $${b}`;
+            } else {
+                h3.innerText = `La cantidad ingresada debe ser mayor o igual al total`;
+    
+            }
+        });
 </script>

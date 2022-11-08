@@ -6,7 +6,7 @@
     })
 </script>
 <div class="container-fluid text-center">
-    <h1 class="titulo display-4">Productos a cobrar</h1>
+    <h1 class="titulo display-4">¿Qué vas a cobrar?</h1>
     <hr />
 
     <!-- LO -->
@@ -67,8 +67,8 @@
                 while ($items = $producto->fetch_object()) { ?>
                     <div class="col contenedores m-auto">
                         <?php if ($items->Stock != 0) { ?>
-                            <div class="card col-9">
-                                <a class="nav-link parrafo" href="<?= base_url . 'carrito/add&id=' . $items->Id ?>">
+                            <div class="card">
+                                <a class="nav-link titulo" href="<?= base_url . 'carrito/add&id=' . $items->Id ?>">
                                     <img src="<?= base_url . 'uploads/images/' . $items->Imagen ?>" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <p class="card-text"><?= $items->Nombre ?></p>
@@ -85,7 +85,6 @@
                     </div>
                 <?php } ?>
                 <!-- ELIMINAR PARA Comprobar Datos  -->
-
             </div>
         </div>
         <div class="col-md-4" id="tablaCarrito">
