@@ -65,7 +65,7 @@
     </div>
     <br>
     <div class="titulo mb-5">
-        <button type="submit" class="btn col-4 fs-5" style="background-color: #ff5e00d7; border:0; height: 60px;">Enviar</button>
+        <button type="submit" class="btn col-4 fs-5 " style="background-color: #ff5e00d7; border:0; height: 60px;">Enviar</button>
         <a href="<?= base_url ?>carrito/delete_all" class="btn col-4 fs-5" style="border: 1px solid black; height: 60px; padding-top: 14px;">Eliminar</a>
         <!-- ========== Start Modal para confirmar "Borrar carrito" ========== -->
         <!-- <button type="button" class="btn col-4 fs-5" style="border: 1px solid black; height: 60px; padding-top: 14px;" data-bs-toggle="modal" data-bs-target="#exampleModal">

@@ -26,7 +26,7 @@
                   <tbody>
                     <tr class="row-cols-2 parrafo">
                       <td class="col">masa</td>
-                      <td class="col"><a class="btn border-success rounded-pill">Agregar</a>
+                      <td class="col"><a class="btn" style="background-color: #fff; border:1px solid black; color:#004000;">Agregar</a>
                       </td>
                     </tr>
                   </tbody>
@@ -69,7 +69,7 @@
               </tr>
             </tbody>
         </table>
-        <button type="submit" class="btn border-success rounded-pill">Teminar</button>
+        <button type="submit" class="btn " style="background-color: #fff; border:1px solid black; color:#004000;">Teminar</button>
       </div>
     </div>
   </div>

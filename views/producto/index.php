@@ -4,7 +4,7 @@
         <h1 class="display-5">Inventario de productos</h1>
         <hr>
         <div>
-            <a type="submit" class="btn btn-outline-success rounded" href="<?= base_url . 'producto/crear' ?>">Agregar</a>
+            <a type="submit" class="btn" style="color: #005000; border:1px solid black;" href="<?= base_url . 'producto/crear' ?>">Agregar</a>
         </div>
     </div>
 
@@ -29,8 +29,8 @@
                                 <td classs="col" style="padding-top: 20px;"><?= $items->Stock ?></td>
                                 <td classs="col" style="padding-top: 20px;"><?= $items->Precio ?></td>
                                 <td classs="col" style="padding-top: 15px;">
-                                    <a class="btn border-success text-dark rounded" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
-                                    <a class="btn btn-outline-danger rounded bi bi-trash3-fill" href="<?= base_url . 'producto/eliminar&id=' . $items->Id ?>">Eliminar</a>
+                                    <a class="btn" style="background-color: #ff5e00d7; border: 0;" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
+                                    <a class="btn bi bi-trash3-fill" style="background-color: #fff; border:1px solid black;" href="<?= base_url . 'producto/eliminar&id=' . $items->Id ?>">Eliminar</a>
                                 </td>
                             </tr>
                         <?php } ?>
