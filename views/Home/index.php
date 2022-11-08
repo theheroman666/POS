@@ -8,20 +8,47 @@
 <div class="container-fluid text-center">
     <h1 class="titulo display-4">Productos a cobrar</h1>
     <hr />
+
+    <!-- LO -->
+    <?php if (isset($_SESSION['identity']) == 'complete') { ?>
+        <div class="alert alert-success titulo alert-dismissible fade show" role="alert">
+            <strong>Hola <?=$_SESSION['identity']->Nombre?> </strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php } ?>
+    <?php if (isset($_SESSION['error_login'])) { ?>
+        <div class="alert alert-danger titulo alert-dismissible fade show" role="alert">
+            <strong>Hubo un erro al crear el producto</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php 
+    unset($_SESSION['error_login']);
+    } ?>
+    <!-- LO -->
+
+    <!-- PO -->
     <?php if (isset($_SESSION['producto']) == 'complete') { ?>
         <div class="alert alert-success titulo alert-dismissible fade show" role="alert">
             <strong>Producto Creado con exito</strong>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
-        <?php unset($_SESSION['producto']);
+    <?php unset($_SESSION['producto']);
     } ?>
+    <?php if (isset($_SESSION['producto']) == 'failed') { ?>
+        <div class="alert alert-danger titulo alert-dismissible fade show" role="alert">
+            <strong>Hubo un erro al crear el producto</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    <?php unset($_SESSION['producto']);
+    } ?>
+    <!-- PO -->
 
-<?php if (isset($_SESSION['pedido']) == 'complete') { ?>
-    <div class="alert alert-success alert-dismissible fade show titulo" role="alert">
-        <strong>Compra realizada con exito</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    
+    <!-- PD -->
+    <?php if (isset($_SESSION['pedido']) == 'complete') { ?>
+        <div class="alert alert-success alert-dismissible fade show titulo" role="alert">
+            <strong>Compra realizada con exito</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
     <?php unset($_SESSION['pedido']);
     } elseif (isset($_SESSION['pedido']) == 'failed') { ?>
         <div class="alert alert-danger alert-dismissible fade show titulo" role="alert">
@@ -29,12 +56,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     <?php } ?>
+    <!-- PD -->
 
     <div class="row">
         <div class="col-md-8 col-sm-12">
             <div class="row row-cols-3">
 
-            <?php var_dump($_SESSION['identity'])?>                <!-- ELIMINAR PARA Comprobar Datos linea 52 hasta linea 73-->
+                <!-- ELIMINAR PARA Comprobar Datos linea 52 hasta linea 73-->
                 <?php
                 while ($items = $producto->fetch_object()) { ?>
                     <div class="col contenedores m-auto">

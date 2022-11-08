@@ -40,18 +40,21 @@
                         <i class="bi bi-person-circle" style="font-size: 40px;"></i>
                     </button>
                     <ul class="dropdown-menu fs-5 titulo" style="margin-top: 73px;">
-                        <li><a class="dropdown-item" href="#">Cambiar de usuario</a></li>
-                        <hr>
                         <?php if (isset($_SESSION['identity'])) { ?>
                         <li>
-                            <a class="dropdown-item" href="<?= base_url ?>usuario/logout">Cerrar sesión</a>
-
+                            <a class="dropdown-item" href="<?= base_url ?>usuario/cambiarSesion">Cambiar usuarios</a>
                         </li>
-                    <?php } else { ?>
-                        <li>
-                            <a class="dropdown-item" href="<?= base_url ?>usuario/index">Iniciar sesion</a>
-                        </li>
-                    <?php } ?>
+                        <hr>
+                        <?php } ?>
+                        <?php if (isset($_SESSION['identity'])) { ?>
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url ?>usuario/logout">Cerrar sesión</a>
+                            </li>
+                        <?php } else { ?>
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url ?>usuario/index">Iniciar sesion</a>
+                            </li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
