@@ -9,7 +9,7 @@
             <?php while ($items = $user->fetch_object()) { ?>
 
                 
-                <div class="pt-2 col-3 bg-light mx-2 titulo rounded-5 border-login users" ondblclick="(document.querySelector('#user<?=$items->id?>.d-none'))? mostrar(<?=$items->id?>) : ocultar(<?=$items->id?>)">
+                <div class="pt-2 col-3 bg-light mx-2 titulo rounded-5 border-login users" onclick="(document.querySelector('#user<?=$items->id?>.d-none'))? mostrar(<?=$items->id?>) : ocultar(<?=$items->id?>)">
 
                     <input readonly disabled class="form-control text-center fs-4" id="Name" name="Name" style="background-color: rgba(240, 248, 255, 0); border: 0;" value="<?= $items->nombre ?>">
                     <div class="mb-3 pt-2">
