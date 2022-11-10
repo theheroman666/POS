@@ -107,17 +107,16 @@
 <?php endif; ?>
 <!-- Bootstrap JavaScript Libraries -->
 <script>
-    var num1 = document.getElementById("total").value;
-    var num2 = document.getElementById("dinero");
+    var Total = document.getElementById("total").value;
+    var Dinero = document.getElementById("dinero");
     var h3 = document.getElementById("h3");
-    num2.addEventListener("keyup", function() {
-        let a = num2.value;
-        let b = a - num1;
-            if (b >= 0) {
-                h3.innerText = `Cambio: $${b}`;
+    Dinero.addEventListener("keyup", function() {
+        let DineroRecibido = Dinero.value;
+        let Cambio = DineroRecibido - Total;
+            if (Cambio >= 0) {
+                h3.innerText = `Cambio: $${Cambio}`;
             } else {
                 h3.innerText = `La cantidad ingresada debe ser mayor o igual al total`;
-    
             }
         });
 </script>
