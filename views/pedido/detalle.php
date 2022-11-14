@@ -19,7 +19,6 @@
                 <table class="table table-striped">
                     <thead class="table table-dark titulo">
                         <tr class="row-cols-6">
-                            <th scope="col">Id</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Unidades</th>
@@ -35,8 +34,7 @@
                                 <td classs="col"><?= $items->Precio ?></td>
                                 <td classs="col"><?= $items->Unidades ?></td>
                                 <td classs="col"><?= $items->Total ?></td>
-                                <td classs="col"><?= $items->DineroRecibido ?></td>
-
+                                <td classs="col">$<?= $items->DineroRecibido ?></td>
                             </tr>
                         <?php
                         } ?>

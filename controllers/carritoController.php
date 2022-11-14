@@ -57,7 +57,7 @@ class carritoController{
 			}
 		}
 		
-		header("Location:".base_url."carrito/index");
+		header("Location:".base_url."carrito/indexMenu");
 	}
 	
 	public function delete(){
