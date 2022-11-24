@@ -28,6 +28,7 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE restaurantes;
 
+USE restaurantes;
 
 CREATE TABLE `inventario` (
   `Id` int(255) NOT NULL,
