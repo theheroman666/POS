@@ -12,6 +12,8 @@ class Pedido
 	private $Total;
 	private $DineroRecibido;
 	private $Factura;
+	private $cantidad;
+	private $contenido;
 	private $Fecha;
 
 	private $db;
@@ -81,6 +83,17 @@ class Pedido
 	{
 		return $this->Fecha = $Fecha;
 	}
+
+	public function getCantidad()
+	{
+		return $this->cantidad;
+	}
+
+	public function setCantidad($cantidad)
+	{
+		$this->cantidad = $cantidad;
+	}
+
 	public function getAll()
 	{
 		$productos = $this->db->query("SELECT usuarios.Nombre, pedidos.Id,pedidos.Total, 
@@ -219,5 +232,48 @@ class Pedido
 		$impresora->close();
 		return true;
 
+	}
+
+	public function getContenido()
+	{
+		return $this->contenido;
+	}
+
+	public function setContenido($contenido)
+	{
+		$this->contenido = $contenido;
+
+	}
+
+	public function saveInv()
+	{
+		$sql = "INSERT INTO pedidosinv VALUES(NULL, {$this->getTotal()}, NULL);";
+		$save = $this->db->query($sql);
+
+		$result = false;
+		if ($save) {
+			$result = true;
+		}
+		return $result;
+	}
+
+	public function save_lineaInv()
+	{
+		$sql = "SELECT LAST_INSERT_ID() as 'pedido';";
+		$query = $this->db->query($sql);
+		$pedido_id = $query->fetch_object()->pedido;
+
+		foreach ($_SESSION['carritoInv'] as $elemento) {
+			$producto = $elemento['producto'];
+
+			$insert = "INSERT INTO ordeninv VALUES(NULL, {$pedido_id}, {$producto->Id}, {$elemento['unidades']}, NULL)";
+			$save = $this->db->query($insert);
+		}
+
+		$result = false;
+		if ($save) {
+			$result = true;
+		}
+		return $result;
 	}
 }

@@ -103,7 +103,7 @@ class usuarioController
 		}catch(ErrorException $msg){
 			var_dump($msg->getMessage());
 		}finally{
-			header("Location:" . base_url.'producto/gestion');
+			header("Location:" . base_url.'pedido/index');
 		}
 	}
 

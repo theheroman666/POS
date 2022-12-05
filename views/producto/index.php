@@ -31,12 +31,12 @@
 
                                     <?php if (isset($_SESSION['auth']) || isset($_SESSION['admin'])) { ?>
                                         <a class="btn" style="background-color: #ff5e00d7; border: 0;" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
-                                        
+
                                     <?php
-                                unset($_SESSION['auth']);
-                                } else { ?>
+                                        unset($_SESSION['auth']);
+                                    } else { ?>
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            Launch demo modal
+                                            Editar
                                         </button>
 
                                         <!-- Modal -->
@@ -50,8 +50,15 @@
                                                     <div class="modal-body">
                                                         <form action="<?= base_url ?>usuario/loginroot" method="post">
                                                             <div class="mb-3 input-group">
+                                                                Nombre
                                                                 <input class="form-control text-center fs-4 " name="Name">
+                                                            </div>
+                                                            <div class="mb-3 input-group">
+                                                                Contraseña
                                                                 <input type="password" class="form-control rounded-start border-secondary" name="password">
+                                                                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-arrow-right fs-5"></i></button>
+                                                            </div>
+                                                            <div class="mb-3 input-group">
                                                                 <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-arrow-right fs-5"></i></button>
                                                             </div>
                                                         </form>

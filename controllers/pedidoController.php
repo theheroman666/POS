@@ -17,50 +17,101 @@ class pedidoController
 	}
 	public function hacer()
 	{
-		try{
+		try {
 
-			if (isset($_SESSION['identity'])&& isset($_POST)) {
+			if (isset($_SESSION['identity']) && isset($_POST)) {
 				$usuario_id = $_SESSION['identity']->Id;
 				$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
-			$Factura = isset($_POST['Factura']) ? $_POST['Factura'] : 'No';
+				$Factura = isset($_POST['Factura']) ? $_POST['Factura'] : 'No';
 
-			$stats = Utils::statsCarrito();
-			$costo = $stats['total'];
+				$stats = Utils::statsCarrito();
+				$costo = $stats['total'];
 
-			if ($usuario_id && $DineroRecibido && $costo) {
-				// Guardar datos en bd
-				$pedido = new Pedido();
-				$pedido->setUsuarioId($usuario_id);
-				$pedido->setTotal($costo);
-				$pedido->setDineroRecibido($DineroRecibido);
-				$pedido->setFactura($Factura);
+				if ($usuario_id && $DineroRecibido && $costo) {
+					// Guardar datos en bd
+					$pedido = new Pedido();
+					$pedido->setUsuarioId($usuario_id);
+					$pedido->setTotal($costo);
+					$pedido->setDineroRecibido($DineroRecibido);
+					$pedido->setFactura($Factura);
 
-				$save = $pedido->save();
+					$save = $pedido->save();
 
-				// Guardar linea pedido
-				$save_linea = $pedido->save_linea();
+					// Guardar linea pedido
+					$save_linea = $pedido->save_linea();
 
-				$pedido->imprimir();
+					$pedido->imprimir();
 
-				if ($save && $save_linea) {
-					$_SESSION['pedido'] = "complete";
-			header("Location:" . base_url);
-
+					if ($save && $save_linea) {
+						$_SESSION['pedido'] = "complete";
+						header("Location:" . base_url);
+					} else {
+						$_SESSION['pedido'] = "failed";
+					}
 				} else {
 					$_SESSION['pedido'] = "failed";
 				}
 			} else {
-				$_SESSION['pedido'] = "failed";
+				// Redigir al index
+				header("Location:" . base_url);
 			}
-		} else {
-			// Redigir al index
+		} catch (ErrorException $msg) {
+			header("Location:" . base_url);
+		} finally {
 			header("Location:" . base_url);
 		}
-	}catch(ErrorException $msg){
-		header("Location:" . base_url);
-	}finally{
-		header("Location:" . base_url);
 	}
+
+	public function hacerInv()
+	{
+		try {
+
+			if (isset($_SESSION['admin']) && isset($_POST)) {
+				$usuario_id = $_SESSION['identity']->Id;
+				$contenido = isset($_POST['cont']) ? $_POST['cont'] : false;
+				$cantidad = isset($_POST['cantidad']) ? $_POST['cantidad'] : 'No';
+				$Dinero = isset($_POST['costo']) ? $_POST['costo'] : 'No';
+				
+
+				$stats = Utils::statsCarrito();
+				$costo = $stats['total'];
+
+				if ($usuario_id && $contenido && $costo) {
+					for ($i = 0; $i < count($contenido); $i++){
+
+						// Guardar datos en bd
+						$pedido = new Pedido();
+					$pedido->setUsuarioId($usuario_id);
+					$pedido->setCantidad($cantidad);
+					$pedido->setContenido($contenido);
+					$pedido->setDineroRecibido($Dinero);
+					$pedido->setTotal($costo);
+
+					$save = $pedido->saveInv();
+
+					// Guardar linea pedido
+					$save_linea = $pedido->save_lineaInv();
+
+					if ($save && $save_linea) {
+						$_SESSION['pedido'] = "complete";
+						header("Location:" . base_url);
+					} else {
+						$_SESSION['pedido'] = "failed";
+					}
+				}
+				} else {
+					$_SESSION['pedido'] = "failed";
+				}
+			// } else {
+			// 	// Redigir al index
+			// 	// header("Location:" . base_url);
+			}
+		} catch (ErrorException $msg) {
+			// header("Location:" . base_url);
+			var_dump($msg->getMessage());
+		} finally {
+			// header("Location:" . base_url);
+		}
 	}
 
 	public function detalle()

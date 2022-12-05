@@ -53,7 +53,6 @@
                 $carritoinv = new carritoInvController();
                 $carritoinv->indexMenu();
                 ?>
-                <button type="submit" class="btn " style="background-color: #fff; border:1px solid black; color:#004000;">Teminar</button>
             </div>
         </div>
     </div>
