@@ -17,9 +17,11 @@ class pedidoController
 	}
 	public function hacer()
 	{
-		if (isset($_SESSION['identity'])&& isset($_POST)) {
-			$usuario_id = $_SESSION['identity']->Id;
-			$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
+		try{
+
+			if (isset($_SESSION['identity'])&& isset($_POST)) {
+				$usuario_id = $_SESSION['identity']->Id;
+				$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
 			$Factura = isset($_POST['Factura']) ? $_POST['Factura'] : 'No';
 
 			$stats = Utils::statsCarrito();
@@ -38,10 +40,12 @@ class pedidoController
 				// Guardar linea pedido
 				$save_linea = $pedido->save_linea();
 
-				$print = $pedido->imprimir();
+				$pedido->imprimir();
 
-				if ($save && $save_linea && $print) {
+				if ($save && $save_linea) {
 					$_SESSION['pedido'] = "complete";
+			header("Location:" . base_url);
+
 				} else {
 					$_SESSION['pedido'] = "failed";
 				}
@@ -52,7 +56,11 @@ class pedidoController
 			// Redigir al index
 			header("Location:" . base_url);
 		}
+	}catch(ErrorException $msg){
 		header("Location:" . base_url);
+	}finally{
+		header("Location:" . base_url);
+	}
 	}
 
 	public function detalle()

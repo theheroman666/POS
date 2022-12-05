@@ -57,11 +57,10 @@ $(document).ready(function() {
     </div>
     <?php } ?>
     <!-- PD -->
-
     <div class="row">
         <div class="col-md-8 col-sm-12">
             <div class="row row-cols-3">
-
+                
                 <!-- ELIMINAR PARA Comprobar Datos linea 52 hasta linea 73-->
                 <?php
                 while ($items = $producto->fetch_object()) { ?>
@@ -114,6 +113,5 @@ function ajax(id) {
             location.reload();
         }
     };
-    console.log(id);
 }
 </script>

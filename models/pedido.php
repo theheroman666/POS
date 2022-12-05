@@ -156,9 +156,7 @@ class Pedido
 			$insert = "INSERT INTO orden VALUES(NULL, {$pedido_id}, {$producto->Id}, {$elemento['unidades']}, NULL)";
 			$save = $this->db->query($insert);
 			$this->db->query("UPDATE productos SET productos.Stock = productos.Stock - {$elemento['unidades']} where productos.Id = '{$producto->Id}';");
-		
 		}
-		Utils::deleteSession('carrito');
 
 		$result = false;
 		if ($save) {
@@ -179,7 +177,8 @@ class Pedido
 		return $result;
 	}
 
-	public function imprimir(){
+	public function imprimir()
+	{
 		$sql = "SELECT LAST_INSERT_ID() as 'pedido';";
 		$query = $this->db->query($sql);
 		$pedido_id = $query->fetch_object()->pedido;
@@ -188,43 +187,37 @@ class Pedido
 		orden.Unidades, pedidos.Total, pedidos.DineroRecibido, orden.PedidoId as 'IdO' FROM orden 
 		INNER JOIN pedidos on orden.PedidoId = pedidos.Id 
 		INNER JOIN productos on orden.ProductoId = productos.Id  WHERE orden.PedidoId = {$pedido_id} ");
-		$nombre_impresora = "Generic  Text Only";
+		$nombreImpresora = "NOMBRE_IMPRESORA";
+		$connector = new WindowsPrintConnector($nombreImpresora);
+		$impresora = new Printer($connector);
+		$impresora->setJustification(Printer::JUSTIFY_CENTER);
+		$impresora->setEmphasis(true);
+		$impresora->text("Ticket de venta\n");
+		$impresora->setEmphasis(false);
+		$impresora->text("\n===============================\n");
+		$_SESSION['ticket'] = $sqls->fetch_object();
+		while ($items = $sqls->fetch_object()) {
 
-			$connector = new WindowsPrintConnector($nombre_impresora);
-			$printer = new Printer($connector);
-			$result = false;
-
-			try{
-
-				$printer->setJustification(Printer::JUSTIFY_CENTER);
-				
-			$printer->setTextSize(2, 2);
-			$printer->text("Ticket con PHP");
-
-			$printer->setTextSize(2, 1);
-			$printer->feed(5);
-			// foreach(){
-
-			// }
-			$printer->setJustification(Printer::JUSTIFY_LEFT);
-			while ($items = $sqls->fetch_object()) {
-
-				$printer->text($items->Nombre);
-				$printer->text($items->Precio);
-			
-			}
-
-			$printer->feed(3);
-
-			$printer->cut();
-
-			$printer->pulse();
-
-			$printer->close();
-			return $result = true;
-		}catch(ErrorException $msg){
-			return $result;
+			$impresora->setJustification(Printer::JUSTIFY_LEFT);
+			$impresora->text(sprintf("%.2fx%s\n", $items->Unidades));
+			$impresora->setJustification(Printer::JUSTIFY_RIGHT);
+			$impresora->text('$' . $items->Precio . "\n");
 		}
-		
+		$impresora->setJustification(Printer::JUSTIFY_CENTER);
+		$impresora->text("\n===============================\n");
+		$impresora->setJustification(Printer::JUSTIFY_RIGHT);
+		$impresora->setEmphasis(true);
+		$stats = Utils::statsCarrito();
+        
+		$impresora->text("Total: $" . $_SESSION['ticket']->Total . "\n");
+		$impresora->setJustification(Printer::JUSTIFY_CENTER);
+		$impresora->setTextSize(1, 1);
+		$impresora->text("Gracias por su compra\n");
+		$impresora->feed(5);
+		Utils::deleteSession('carrito');
+		Utils::deleteSession('ticket');
+		$impresora->close();
+		return true;
+
 	}
 }
