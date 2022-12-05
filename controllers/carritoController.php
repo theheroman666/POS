@@ -20,7 +20,7 @@ class carritoController{
 		}else{
 			$carrito = array();
 		}
-		require_once 'views/carrito/indexInventario.php';
+		require_once 'views/carrito/indexProducto.php';
 	}
 
 	public function add(){

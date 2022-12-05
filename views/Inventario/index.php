@@ -8,28 +8,37 @@
 
     <div class="container-fluid text-center">
         <div class="row pt-3">
-            <div class="col-7">
+            <div class="col-5">
 
                 <h5 class="titulo fs-3">Productos </h5>
                 <!-- ELIMINAR PARA Comprobar Datos linea 52 hasta linea 73-->
                 <div class="pt-3">
                     <div class="text-center container">
                         <div class="row justify-content-center">
-                            <div class="col-11">
+                            <div class="col-12">
                                 <table class="table">
                                     <thead class="table-dark">
                                         <tr class="row-cols-2 titulo">
-                                            <th scope="col ">Producto</th>
-                                            <th scope="col ">Comprar</th>
+                                            <th scope="col ">Imagen</th>
+                                            <th scope="col ">Nombre</th>
+                                            <th scope="col ">Acccion</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="row-cols-2 parrafo">
-                                            <td class="col">masa</td>
-                                            <td class="col"><a class="btn"
-                                                    style="background-color: #fff; border:1px solid black; color:#004000;">Agregar</a>
-                                            </td>
-                                        </tr>
+                                        <?php while ($items = $productos->fetch_object()) {
+                                        ?>
+
+                                            <tr class="row-cols-2 parrafo">
+                                                <td><img src="<?= base_url . 'uploads/images/' . $items->Imagen ?>" class="img img-fluid" width="75" alt="..."></td>
+                                                <td class="col"><?= $items->Nombre ?></td>
+                                                <td class="col">
+                                                    <a class="btn titulo ajax" style="background-color: #fff; border:1px solid black; color:#004000;" onclick="ajax(<?= $items->Id ?>)">
+                                                        <!-- <a class="nav-link titulo" href="<?= base_url . 'carrito/add&id=' . $items->Id ?>"> -->
+                                                        Agregar
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -38,42 +47,20 @@
                 </div>
                 <!-- ELIMINAR PARA Comprobar Datos  -->
             </div>
-            <div class="col-5 justify-content-center text-center" id="tablaCarrito">
+            <div class="col-7 justify-content-center text-center" id="tablaCarrito">
                 <h5 class="titulo fs-3">Lista</h5>
-                <table class="table">
-                    <div class="pt-3">
-                        <thead class="table-dark">
-                            <tr class="row row-cols-4">
-                                <th class="col">Nombre</th>
-                                <th class="col">Cantidad</th>
-                                <th class="col">Precio</th>
-                                <th class="col">Eliminar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="row row-cols-4 parrafo">
-                                <td class="col">masa</td>
-                                <td class="col d-flex">
-                                    <input class="form-control" value="12" style="width: 50px;">
-                                    <select class="form-control form-select" style="font-size:15px" id="slct1"></select>
-                                </td>
-                                <td class="col">
-                                    <input type="text" class="form-control" value="asd" style="width: 100px;">
-                                </td>
-                                <td class="col"><a class="btn btn-outline-danger rounded-pill"><i
-                                            class="bi bi-trash3-fill"></i></a></td>
-                            </tr>
-                        </tbody>
-                </table>
-                <button type="submit" class="btn "
-                    style="background-color: #fff; border:1px solid black; color:#004000;">Teminar</button>
+                <?php
+                $carritoinv = new carritoInvController();
+                $carritoinv->indexMenu();
+                ?>
+                <button type="submit" class="btn " style="background-color: #fff; border:1px solid black; color:#004000;">Teminar</button>
             </div>
         </div>
     </div>
 </div>
 </div>
 
-<script>
+<!-- <script>
 let select = ["kg", "pzs"];
 
 let slct1 = document.getElementById("slct1");
@@ -84,4 +71,21 @@ select.forEach(function addOption(item) {
     option.value = item;
     slct1.appendChild(option);
 });
+</script> -->
+<script>
+    function ajax(id) {
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "<?= base_url ?>carritoInv/add&id=" + id);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send();
+        xhttp.onload = function() {
+            if (xhttp.status == 200) {
+                console.log(xhttp.status);
+                let carrito = document.querySelector("#tablaCarrito");
+                // carrito.innerHTML = xhttp.responseText;
+                // console.log(xhttp.responseText);
+                location.reload();
+            }
+        };
+    }
 </script>

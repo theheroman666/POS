@@ -72,12 +72,12 @@ class Inventario{
 	}
 	
 	public function getOne(){
-		$producto = $this->db->query("SELECT * FROM inventario WHERE id = {$this->getId()}");
+		$producto = $this->db->query("SELECT * FROM inventario WHERE Id = {$this->getId()}");
 		return $producto->fetch_object();
 	}
 	
 	public function save(){
-		$sql = "INSERT INTO inventario VALUES(NULL, '{$this->getNombre()}', {$this->getCosto()}, {$this->getStock()}, '{$this->getImagen()}', null);";
+		$sql = "INSERT INTO inventario VALUES(NULL, '{$this->getNombre()}', '{$this->getImagen()}', null);";
 		$save = $this->db->query($sql);
 		
 		$result = false;
@@ -88,7 +88,7 @@ class Inventario{
 	}
 	
 	public function edit(){
-		$sql = "UPDATE productos SET nombre='{$this->getNombre()}', descripcion='{$this->getDescripcion()}', costo={$this->getCosto()}, stock={$this->getStock()}, categoria_id={$this->getCategoria_id()}  ";
+		$sql = "UPDATE productos SET nombre='{$this->getNombre()}'}  ";
 		
 		if($this->getImagen() != null){
 			$sql .= ", imagen='{$this->getImagen()}'";

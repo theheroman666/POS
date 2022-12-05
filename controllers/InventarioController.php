@@ -42,14 +42,14 @@ class InventarioController{
 		Utils::isAdmin();
 		if(isset($_POST)){
 			$nombre = isset($_POST['nombre']) ? $_POST['nombre'] : false;
-			$stock = isset($_POST['stock']) ? $_POST['stock'] : false;
-			$Costo = isset($_POST['CostoM']) ? $_POST['CostoM'] : false;
+			// $stock = isset($_POST['stock']) ? $_POST['stock'] : false;
+			// $Costo = isset($_POST['CostoM']) ? $_POST['CostoM'] : false;
 			
-			if($nombre && $stock){
+			if($nombre){
 				$producto = new Inventario();
 				$producto->setNombre($nombre);
-				$producto->setCosto($Costo);
-				$producto->setStock($stock);
+				// $producto->setCosto($Costo);
+				// $producto->setStock($stock);
 				
 				// Guardar la imagen
 				if(isset($_FILES['imagen'])){

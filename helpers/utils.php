@@ -43,4 +43,21 @@ class Utils{
 		
 		return $stats;
 	}
+	public static function statsCarritoInv(){
+		$stats = array(
+			'count' => 0,
+			'total' => 0
+		);
+		
+		if(isset($_SESSION['carritoInv'])){
+			
+			$stats['count'] = count($_SESSION['carritoInv']);
+			
+			foreach($_SESSION['carrito'] as $producto){
+				$stats['total'] += $producto['precio']*$producto['unidades'];
+			}
+		}
+		
+		return $stats;
+	}
 }
