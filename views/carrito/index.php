@@ -28,8 +28,7 @@
                                 <a class="nav-link text-dark" href="<?= base_url ?>producto/ver&id=<?= $producto->Id ?>"><?= $producto->Nombre ?></a>
                             </td>
                             <td class="col">
-                                <!-- <?= $producto->Precio ?> -->
-                                <?= $precio ?>
+                                <?= $producto->Precio ?>
                             </td>
                             <td class="col">
                                 <?= $elemento['unidades'] ?>

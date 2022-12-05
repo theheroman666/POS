@@ -1,6 +1,7 @@
 <?php
 
-class Producto{
+class Producto
+{
 	private $id;
 	private $nombre;
 	private $precio;
@@ -9,74 +10,99 @@ class Producto{
 	private $fecha;
 
 	private $db;
-	
-	public function __construct() {
+
+	public function __construct()
+	{
 		$this->db = Database::connect();
 	}
-	
-	function getId() {
+
+	function getId()
+	{
 		return $this->id;
 	}
 
-	
 
-	function getNombre() {
+
+	function getNombre()
+	{
 		return $this->nombre;
 	}
 
-	
 
-	function getPrecio() {
+
+	function getPrecio()
+	{
 		return $this->precio;
 	}
 
-	function getStock() {
+	function getStock()
+	{
 		return $this->stock;
 	}
 
-	function getFecha() {
+	function getFecha()
+	{
 		return $this->fecha;
 	}
 
-	function getImagen() {
+	function getImagen()
+	{
 		return $this->imagen;
 	}
 
-	function setId($id) {
+	function setId($id)
+	{
 		$this->id = $id;
 	}
 
-	function setNombre($nombre) {
+	function setNombre($nombre)
+	{
 		$this->nombre = $this->db->real_escape_string($nombre);
 	}
 
-	function setPrecio($precio) {
+	function setPrecio($precio)
+	{
 		$this->precio = $this->db->real_escape_string($precio);
 	}
 
-	function setStock($stock) {
+	function setStock($stock)
+	{
 		$this->stock = $this->db->real_escape_string($stock);
 	}
 
-	function setFecha($fecha) {
+	function setFecha($fecha)
+	{
 		$this->fecha = $fecha;
 	}
 
-	function setImagen($imagen) {
+	function setImagen($imagen)
+	{
 		$this->imagen = $imagen;
 	}
 
-	public function getAll(){
-		$productos = $this->db->query("SELECT * FROM productos ORDER BY id ASC");
+	public function getAll()
+	{
+		$productos = $this->db->query("SELECT productos.Id, productos.Nombre, productos.Precio, productos.Imagen, productos.Stock 
+		FROM productos ORDER BY id ASC");
 		return $productos;
 	}
-	
-	public function getOne(){
-		$producto = $this->db->query("SELECT * FROM productos WHERE Id = {$this->getId()}");
-		return $producto->fetch_object();
+	public function getList()
+	{
+		$productos = $this->db->query("SELECT productos.Id, productos.Nombre, productos.Precio, productos.Imagen, productos.Stock 
+		FROM productos ");
+		return $productos;
 	}
-	
-	public function save(){
+
+	public function getOne()
+	{
+			$producto = $this->db->query("SELECT productos.Id, productos.Nombre, productos.Precio, productos.Imagen, productos.Stock 
+			FROM productos 
+			WHERE productos.Id = {$this->getId()}");
+			return $producto->fetch_object();
+	}
+
+	public function save()
+	{
 		$sql = "INSERT INTO productos 
 		VALUES(NULL, 
 		'{$this->getNombre()}', 
@@ -85,46 +111,59 @@ class Producto{
 		{$this->getStock()}, 
 		null);";
 		$save = $this->db->query($sql);
-		
+
 		$result = false;
-		if($save){
+		if ($save) {
 			$result = true;
 		}
 		return $result;
 	}
-	
-	public function edit(){
+	public function saveProducto()
+	{
+		$sql = "INSERT INTO productos 
+		VALUES(NULL, {$this->getNombre()});";
+		$save = $this->db->query($sql);
+		$result = false;
+		if ($save) {
+			$result = true;
+		}
+		return $result;
+	}
+
+	public function edit()
+	{
 		$sql = "UPDATE productos 
 		SET 
-		Nombre='{$this->getNombre()}', 
+		Nombre={$this->getNombre()}, 
 		Precio={$this->getPrecio()}, 
 		Stock={$this->getStock()}";
-		
-		if($this->getImagen() != null){
+
+		if ($this->getImagen() != null) {
 			$sql .= ", imagen='{$this->getImagen()}'";
 		}
-		
+
 		$sql .= " WHERE id={$this->id};";
-		
-		
+
+
 		$save = $this->db->query($sql);
-		
+
 		$result = false;
-		if($save){
+		if ($save) {
 			$result = true;
 		}
 		return $result;
 	}
-	
-	public function delete(){
+
+	public function delete()
+	{
 		$sql = "DELETE FROM productos WHERE id={$this->id}";
 		$delete = $this->db->query($sql);
-		
+
 		$result = false;
-		if($delete){
+		if ($delete) {
 			$result = true;
 		}
 		return $result;
 	}
-	
+
 }

@@ -1,6 +1,6 @@
 <div class="container-fluid text-center">
     <div class="container">
-        <h1 class="display-5 pt-3 titulo">Inventario proveedores</h1>
+        <h1 class="display-5 pt-3 titulo">Inventario</h1>
         <hr>
     </div>
 

@@ -35,7 +35,5 @@ if (isset($pro->Id)) { ?>
         </div>
     </form>
 <?php
-} else {
-    header('Location:' . base_url . 'Inventario/index');
-}
+} 
 ?>

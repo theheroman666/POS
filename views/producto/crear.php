@@ -11,7 +11,8 @@
         <div class="row justify-content-center">
             <div class="mb-2 col-10">
                 <label for="name" class="form-label fs-4">Nombre:</label>
-                <input type="text" class="form-control parrafo" name="nombre">
+                <input type="text" class="form-control parrafo" list="nombre" id="name" name="nombre">
+                
             </div>
             <div class="mb-2 col-5">
                 <label for="name" class="form-label fs-4">Stock:</label>
@@ -31,3 +32,21 @@
         </div>
     </form>
 </div>
+
+<!-- <script>
+    let list = document.querySelector("#nombre");
+    // fetch("https://my-json-server.typicode.com/theheroman666/api/productos", {
+    fetch("http://localhost/POS/producto/", {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+            let i = 0;
+            while (data.length > i) {
+                list.innerHTML += "<option value='" + data[i].id + "'>" + data[i].title + "</option>";
+                console.log(data[i]);
+                i++
+            }
+        })
+        .catch(error => console.error(error))
+</script> -->

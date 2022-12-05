@@ -5,7 +5,11 @@
     <title>El Comal </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="<?= base_url ?>wwwroot/css/site.css">
+    <link rel="stylesheet" href="<?= base_url ?>wwwroot/css/site.css?v=1">
+    <?php
+    header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
+    header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
+    ?>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -41,18 +45,18 @@
                     </button>
                     <ul class="dropdown-menu fs-5 titulo" style="margin-top: 73px;">
                         <?php if (isset($_SESSION['identity'])) { ?>
-                        <li>
-                            <a class="dropdown-item" href="<?= base_url ?>usuario/cambiarSesion">Cambiar usuarios</a>
-                        </li>
-                        <hr>
+                            <li>
+                                <a class="dropdown-item" href="<?= base_url ?>usuario/cambiarSesion">Cambiar usuarios</a>
+                            </li>
+                            <hr>
                         <?php } ?>
                         <?php if (isset($_SESSION['identity'])) { ?>
                             <li>
-                                <a class="dropdown-item" href="<?= base_url ?>usuario/logout">Cerrar sesión</a>
+                                <a class="dropdown-item" href="<?= base_url ?>usuario/logout" accesskey="c">Cerrar sesión</a>
                             </li>
                         <?php } else { ?>
                             <li>
-                                <a class="dropdown-item" href="<?= base_url ?>usuario/index">Iniciar sesion</a>
+                                <a class="dropdown-item" href="<?= base_url ?>usuario/index" accesskey="i">Iniciar sesion</a>
                             </li>
                         <?php } ?>
                     </ul>

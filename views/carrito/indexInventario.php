@@ -25,7 +25,6 @@
                     </td>
                     <td class="col parrafo pt-4">
                         <?= $producto->Precio ?>
-                        <!-- <?= $precio ?> -->
                     </td>
                     <td class="col parrafo pt-2">
                         <?= $elemento['unidades'] ?>
@@ -55,10 +54,16 @@
     <br />
     <label class="parrafo">Ingresar dinero recibido</label><br>
     <input type="number" name="Dinero" id="dinero" class="form-control parrafo w-50 m-auto border-5 border-danger" required>
+    ¿Require Factura?
+    <select name="Factura" id="">
+        <option value="No" selected>No</option>
+        <option value="Si">Sí</option>
+    </select>
     <br>
     <div class="titulo">
         <input type="number" value="<?= $stats['total'] ?>" hidden id="total">
         <h3>Precio total: <?= $stats['total'] ?> $</h3>
+
         <h3 id="h3"></h3>
         <!-- TERMINAR COMPRA -->
 

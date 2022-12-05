@@ -1,8 +1,3 @@
-<?php
-if (!isset($_SESSION['identity'])) { 
-    print_r($_SESSION['identity']);
-    ?>
-
 
     <div class="col-6 m-auto">
         <form action="<?= base_url ?>usuario/save" method="post" class="m-auto">
@@ -27,8 +22,3 @@ if (!isset($_SESSION['identity'])) {
             </div>
         </form>
     </div>
-<?php
-}else{
-    header('Location:'.base_url);
-}
-?>

@@ -17,9 +17,10 @@ class pedidoController
 	}
 	public function hacer()
 	{
-		if (isset($_SESSION['identity'])) {
+		if (isset($_SESSION['identity'])&& isset($_POST)) {
 			$usuario_id = $_SESSION['identity']->Id;
 			$DineroRecibido = isset($_POST['Dinero']) ? $_POST['Dinero'] : false;
+			$Factura = isset($_POST['Factura']) ? $_POST['Factura'] : 'No';
 
 			$stats = Utils::statsCarrito();
 			$costo = $stats['total'];
@@ -30,13 +31,16 @@ class pedidoController
 				$pedido->setUsuarioId($usuario_id);
 				$pedido->setTotal($costo);
 				$pedido->setDineroRecibido($DineroRecibido);
+				$pedido->setFactura($Factura);
 
 				$save = $pedido->save();
 
 				// Guardar linea pedido
 				$save_linea = $pedido->save_linea();
 
-				if ($save && $save_linea) {
+				$print = $pedido->imprimir();
+
+				if ($save && $save_linea && $print) {
 					$_SESSION['pedido'] = "complete";
 				} else {
 					$_SESSION['pedido'] = "failed";

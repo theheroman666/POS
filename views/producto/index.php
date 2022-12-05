@@ -1,4 +1,3 @@
-
 <div class="container-fluid text-center">
     <div class="container titulo">
         <h1 class="display-5">Inventario de productos</h1>
@@ -29,7 +28,39 @@
                                 <td classs="col" style="padding-top: 20px;"><?= $items->Stock ?></td>
                                 <td classs="col" style="padding-top: 20px;"><?= $items->Precio ?></td>
                                 <td classs="col" style="padding-top: 15px;">
-                                    <a class="btn" style="background-color: #ff5e00d7; border: 0;" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
+
+                                    <?php if (isset($_SESSION['auth']) || isset($_SESSION['admin'])) { ?>
+                                        <a class="btn" style="background-color: #ff5e00d7; border: 0;" href="<?= base_url . 'producto/editar&id=' . $items->Id ?>">Editar</a>
+                                        
+                                    <?php
+                                unset($_SESSION['auth']);
+                                } else { ?>
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                            Launch demo modal
+                                        </button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="<?= base_url ?>usuario/loginroot" method="post">
+                                                            <div class="mb-3 input-group">
+                                                                <input class="form-control text-center fs-4 " name="Name">
+                                                                <input type="password" class="form-control rounded-start border-secondary" name="password">
+                                                                <button type="submit" class="btn btn-outline-secondary"><i class="bi bi-arrow-right fs-5"></i></button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php
+                                    } ?>
                                     <a class="btn bi bi-trash3-fill" style="background-color: #fff; border:1px solid black;" href="<?= base_url . 'producto/eliminar&id=' . $items->Id ?>">Eliminar</a>
                                 </td>
                             </tr>

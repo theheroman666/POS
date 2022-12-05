@@ -13,6 +13,7 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Total</th>
                             <th scope="col">DineroRecibido</th>
+                            <th scope="col">Factura</th>
                             <th scope="col">Fecha</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -23,6 +24,7 @@
                                 <td classs="col"><?= $items->Nombre ?></td>
                                 <td classs="col"><?= $items->Total ?></td>
                                 <td classs="col"><?= $items->DineroRecibido ?></td>
+                                <td classs="col"><?= $items->Factura ?></td>
                                 <td classs="col"><?= $items->Fecha ?></td>
                                 <td classs="col">
                                     <a class="btn" style=" background-color: #ff5e00d7; border:0; width: 71px; font-size:15px;" href="<?= base_url . 'pedido/detalle&id=' . $items->Id ?>">Detalles</a>
